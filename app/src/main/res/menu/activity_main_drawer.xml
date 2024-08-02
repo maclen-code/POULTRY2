@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+
+    <group
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+            android:title="@string/nav_dashboard" />
+
+        <item
+            android:id="@+id/nav_download_data"
+            android:icon="@drawable/ic_download_black"
+            android:title="@string/nav_download_data" />
+
+        <item
+            android:id="@+id/nav_sync"
+            android:icon="@drawable/ic_sync"
+            android:title="@string/nav_sync" />
+
+        <item
+            android:id="@+id/nav_downloadMap"
+            android:icon="@drawable/ic_map"
+            android:title="@string/nav_downloadMap" />
+
+        <item
+            android:id="@+id/nav_setting"
+            android:title="@string/nav_setting">
+            <menu tools:ignore="ExtraText">
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_user"
+                        android:icon="@drawable/ic_user"
+                        android:title="@string/nav_user" />
+
+                    <item
+                        android:id="@+id/nav_servers"
+                        android:icon="@drawable/ic_servers"
+                        android:title="@string/nav_servers" />
+
+                </group>
+            </menu>
+        </item>
+    </group>
+
+
+</menu>

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">POULTRY</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">POULTRY</string>
+    <string name="nav_header_subtitle">Sales Management</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="mapbox_access_token">pk.eyJ1IjoibWFjbGVuIiwiYSI6ImNpcjd2c2tubDAwMjFpa25ud3QyY3lpZDcifQ.kl33VxXoHRu0aZeQFE3e2Q</string>
+
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_download_data">Downloaded Data</string>
+    <string name="nav_sync">Sync</string>
+    <string name="nav_downloadMap">Download Offline Map</string>
+    <string name="nav_setting">Setting</string>
+    <string name="nav_user">User</string>
+    <string name="nav_servers">Servers</string>
+
+
+    <string name="menu_user_location">User Location</string>
+    <string name="menu_account_location">Account Location</string>
+
+    <string name="menu_add">Add</string>
+    <string name="menu_delete">Add</string>
+    <string name="menu_filter">Filter</string>
+    <string name="menu_target">Target</string>
+    <string name="menu_reset">Frequency</string>
+
+</resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bMegBack">#010A34</color>
+    <color name="bMegFore">#FDCD07</color>
+    <color name="mainLayout">#FFFFFF</color>
+    <color name="accent">#F39A00</color> <!--61 for %38 opacity-->
+
+<!--    <color name="light">#FDCD07</color>-->
+<!--    <color name="primary">#FDCD07</color>-->
+<!--    <color name="dark">#010A34</color>-->
+<!--    <color name="second_light">#F39A00</color>-->
+<!--    <color name="second_dark">#010A34</color>-->
+
+<!--    <color name="light">#1456FF</color>-->
+    <color name="light">#F4AF00</color>
+    <color name="primary">#031D7F</color>
+    <color name="dark">#010A34</color>
+    <color name="second_light">#F39A00</color>
+    <color name="second_dark">#010A34</color>
+
+
+    <color name="textPrimary">#000000</color> <!--DE for %87 opacity-->
+    <color name="textSecondary">#0F0F0F</color> <!--8A for %54 opacity-->
+    <color name="textWarning">#FAA084</color> <!--61 for %38 opacity-->
+
+    <color name="night_background">#010620</color> <!--61 for %38 opacity-->
+
+<!--    <color name="header_textColor">#0B0B0B</color>-->
+<!--    <color name="header_backColor">#FFD500</color>-->
+    <color name="header_textColor">#FBEFB3</color>
+    <color name="header_backColor">#03135F</color>
+    <color name="table_backColor">#B2B2B1</color>
+
+<!--    <color name="header_textColor">#03A0AF</color>-->
+<!--    <color name="header_backColor">#010C40</color>-->
+
+<!--    <color name="table_header">#FFE681</color>-->
+<!--    <color name="table_background">#C8C8C8</color>-->
+<!--    <color name="table_header_background">#FDCD07</color>-->
+<!--    <color name="table_header_textColor">#000720</color>-->
+
+    <!--    <color name="black">#FF000000</color>-->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+
+
+    <color name="textDarkDisabled">#61000000</color> <!--61 for %38 opacity-->
+
+
+    <color name="red">#FB1313</color>
+    <color name="green">#039A03</color>
+    <color name="light_gray">#EAEDEA</color>
+    <color name="gray">#979897</color>
+
+    <!--    <color name="line_divider">#E6E6E6</color>-->
+    <color name="header">#000000</color>
+
+<!--    <color name="header">#000000</color>-->
+    <color name="item_highlight">#F4E061</color>
+
+    <color name="user_location">#005EFF</color>
+    <color name="account_location">#F82C2C</color>
+    <color name="account_new_location">#B20DFA</color>
+
+    <color name="marker_inactive">#969696</color>
+    <color name="marker_miss">#F82C2C</color>
+    <color name="marker_visited">#039A03</color>
+    <color name="marker_nonSched">#961EFF</color>
+    <color name="marker_issue">#FFF200</color>
+
+    <color name="sync_error">#FFF200</color>
+
+
+</resources>
