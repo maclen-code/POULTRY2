@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context="com.example.poultry2.ui.dashboard.DashboardFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tl_pin"

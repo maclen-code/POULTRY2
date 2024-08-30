@@ -27,14 +27,46 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.poultry.fileprovider"
+            android:authorities="com.example.poultry2.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <activity
+            android:name=".ui.dashboard.cluster.tradeDspDashboard.TradeDspDashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
+        <activity
+            android:name=".ui.dashboard.cluster.clusterDashboard.clusterDsp.clusterDspDashboard.ClusterDspDashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
+        <activity
+            android:name=".ui.dashboard.cluster.tradeDashboard.TradeDashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
 
+        <activity
+            android:name=".ui.dashboard.global.ar.arInvoice.ArInvoiceActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
+        <activity
+            android:name=".ui.dashboard.global.ar.arAccount.ArAccountActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
+        <activity
+            android:name=".ui.dashboard.cluster.clusterDashboard.ClusterDashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
+        <activity
+            android:name=".ui.dashboard.global.uba.ordered.OrderedActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
+        <activity
+            android:name=".ui.dashboard.global.uba.notOrdered.NotOrderedActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
         <activity
             android:name=".ui.sync.SyncActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -63,7 +95,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.example.poultry2.ui.MainActivity"
             android:configChanges="screenSize|orientation"
             android:exported="true"
             android:theme="@style/Theme.bmeg.NoActionBar" >

@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.poultry'
+    namespace 'com.example.poultry2'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.poultry"
+        applicationId "com.example.poultry2"
         minSdk 26
         targetSdk 34
         versionCode 1
