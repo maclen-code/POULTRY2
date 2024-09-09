@@ -12,11 +12,11 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import com.example.poultry2.ui.dashboard.global.customer.DashCustomerFragment
 import com.example.poultry2.R
 import com.example.poultry2.ui.dashboard.sivSov.DashSivSovFragment
 import com.example.poultry2.databinding.FragmentDashboardBinding
 import com.example.poultry2.ui.dashboard.cluster.DashClusterFragment
+import com.example.poultry2.ui.dashboard.inventory.DashInventoryFragment
 import com.example.poultry2.ui.function.Theme
 import com.example.poultry2.ui.function.Theme.resolveColorAttr
 import com.example.poultry2.ui.function.Utils
@@ -58,7 +58,6 @@ class DashboardFragment : Fragment() {
 
         })
 
-//        setTabs()
         Filter.updated.observe(viewLifecycleOwner ) {
 
             binding.tvDateRange.text = Filter.range
@@ -85,11 +84,7 @@ class DashboardFragment : Fragment() {
             }
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                if (tabHeader.contains("siv-sov")) {
-                    menuInflater.inflate(R.menu.menu_siv_sov, menu)
-                }else
-                    menuInflater.inflate(R.menu.menu_filter, menu)
-
+                menuInflater.inflate(R.menu.menu_filter, menu)
                 Theme.setMenuTextColor(requireContext(),menu)
             }
 
@@ -106,22 +101,6 @@ class DashboardFragment : Fragment() {
                         true
                     }
 
-                    R.id.menu_target -> {
-//                        if (Filter.listSupervisor.size==1) {
-//                            Filter.listSupervisor[0].isChecked=true
-//                            Filter.sno=Filter.listSupervisor[0].sno
-//                        }
-//
-//                        if (Filter.listSupervisor.filter {it.isChecked}.size!=1)
-//                            Toast.makeText(requireContext(),
-//                                "Please select 1 supervisor", Toast.LENGTH_SHORT).show()
-//                        else {
-//                            val intent = Intent(requireContext(), SivTargetActivity::class.java)
-//                            startActivity(intent)
-//                        }
-                        true
-                    }
-
                     else -> false}
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
@@ -130,6 +109,7 @@ class DashboardFragment : Fragment() {
         if (tabHeader.isEmpty()) {
             tabHeader.add("siv-sov")
             tabHeader.add("cluster")
+            tabHeader.add("inventory")
         }
         if (binding.tabs.tabCount==0) {
             setupMenu()
@@ -171,6 +151,7 @@ class DashboardFragment : Fragment() {
             when (name) {
                 "siv-sov" -> fragment = DashSivSovFragment()
                 "cluster" -> fragment = DashClusterFragment()
+                "inventory" -> fragment = DashInventoryFragment()
             }
             if (fragment != null) {
                 fragment.arguments = args

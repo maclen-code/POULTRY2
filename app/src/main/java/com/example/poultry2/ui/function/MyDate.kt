@@ -127,6 +127,19 @@ object MyDate {
         return endDateTotalMonths - startDateTotalMonths
     }
 
+    fun Long.millisToTime():String{
+        val minutes = this / 1000 / 60
+        val seconds = this / 1000 % 60
+
+        return if (minutes>0 && seconds>0)
+            "$minutes min , $seconds sec"
+        else if (minutes>0 && seconds ==0L)
+            "$minutes min"
+        else if (minutes==0L && seconds >=0L)
+            "$seconds sec"
+        else
+            "-"
+    }
 
 
 }

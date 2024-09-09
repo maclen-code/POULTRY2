@@ -23,12 +23,12 @@ class SivTargetRepository(private val sivTargetDao: SivTargetDao) {
         return sivTargetDao.upload(cid)
     }
 
-    fun uploadSuccess(cid: String,clusterId:String,date:String){
+    fun uploadSuccess(cid: String,clusterId:Int,date:String){
         sivTargetDao.uploadSuccess(cid,clusterId,date)
     }
 
-    fun getAll(sno:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.TargetCluster>>{
-        return sivTargetDao.getAll(sno,date,salesFrom,salesTo)
+    fun getAll(cid:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.TargetCluster>>{
+        return sivTargetDao.getAll(cid,date,salesFrom,salesTo)
     }
 
 }

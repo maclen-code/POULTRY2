@@ -84,13 +84,13 @@ class DashTradeChannelFragment : Fragment(){
                 ViewModelProvider(this@DashTradeChannelFragment)[SovViewModel::class.java]
 
             val listSovChannelDsp=vm.sovDspChannel(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType, -1,tradeCode,"")
 
             val listSovChannelCategory=vm.sovCategoryChannel(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType, -1,tradeCode,"")

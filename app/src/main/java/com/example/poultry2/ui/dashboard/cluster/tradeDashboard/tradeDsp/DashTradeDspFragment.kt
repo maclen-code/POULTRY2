@@ -85,13 +85,13 @@ class DashTradeDspFragment : Fragment(){
                 ViewModelProvider(this@DashTradeDspFragment)[SovViewModel::class.java]
 
             val listSovDspBunit=vm.sovDspBunit(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType, -1,tradeCode)
 
             val listSovDspChannel=vm.sovDspChannel(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType, -1,tradeCode,"")

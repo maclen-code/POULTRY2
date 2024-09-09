@@ -44,7 +44,7 @@ class DashClusterCategoryFragment : Fragment(){
         _binding = FragmentDashCustomerBinding.inflate(inflater, container, false)
 
         val args = arguments
-        clusterId = args!!.getInt("clusterId",0)
+        clusterId = args!!.getInt("clusterId",-1)
         cluster = args.getString("cluster","")
 
         adapter= DashClusterCategoryAdapter()
@@ -95,13 +95,13 @@ class DashClusterCategoryFragment : Fragment(){
                 ViewModelProvider(this@DashClusterCategoryFragment)[SovViewModel::class.java]
 
             val listSovCategoryDsp=vm.sovCategoryDsp(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType,clusterId,"")
 
             val listSovCategoryChannel=vm.sovCategoryChannel(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType,clusterId,"","")

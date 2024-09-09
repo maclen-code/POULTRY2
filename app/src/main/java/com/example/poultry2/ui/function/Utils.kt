@@ -36,7 +36,6 @@ object Utils {
     }
 
     fun formatDoubleToString(value:Double,numberOfDecimal:Int=2, displayZero:String=""):String{
-
         return if (value==0.0 && displayZero!="0")
             displayZero
         else

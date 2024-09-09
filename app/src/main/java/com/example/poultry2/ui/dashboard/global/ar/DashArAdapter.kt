@@ -41,7 +41,7 @@ class DashArAdapter internal constructor() : RecyclerView.Adapter<DashArAdapter.
 
             Table.createHeader(
                 current.balanceType, listOf("CURRENT","1 - 15 DAYS", "16 - 30 DAYS",
-                    "ABOVE 30 DAYS", "TOTAL"
+                    "ABOVE 30 DAYS","OVER 90 DAYS", "TOTAL"
                 ), binding.table1,true
             )
             table1(binding.table1, current)
@@ -67,6 +67,9 @@ class DashArAdapter internal constructor() : RecyclerView.Adapter<DashArAdapter.
             Gravity.END ,textColor))
 
         row.addView(Table.cell(context, Utils.formatDoubleToString(item.a4,0),
+            Gravity.END ,textColor))
+
+        row.addView(Table.cell(context, Utils.formatDoubleToString(item.a5,0),
             Gravity.END ,textColor))
 
         row.addView(Table.cell(context, Utils.formatDoubleToString(item.total,0),

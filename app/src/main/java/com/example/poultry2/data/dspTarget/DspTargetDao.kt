@@ -2,6 +2,7 @@ package com.example.poultry2.data.dspTarget
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.poultry2.data.Data
 
 @Dao
 interface DspTargetDao {
@@ -21,14 +22,16 @@ interface DspTargetDao {
     @Query("Update dspTarget set uploaded=1 where cid=:cid and rid=:rid and date=:date and uploaded=0")
     fun uploadSuccess(cid: String,rid:String,date:String)
 
-//    @Query("Select x.bunitId, x.bunit,x.catId,x.category,ifnull(z.volumeTarget,0) volumeTarget " +
-//            "FROM  sov x " +
-//            "left join  " +
-//            "(select x.catId,x.volumeTarget from dspTarget x " +
-//            "where x.rid=:rid and x.date=:date ) z  " +
-//            "on z.catId=x.catId  " +
-//            "where x.rid=:rid and date between :salesFrom and :salesTo " +
-//            "group by x.bunitId,x.bUnit,x.catId,x.category")
-//    fun getAll(rid:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.Target>>
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
+    @Query("Select x.rid,x.volumeTarget,x.amountTarget " +
+            "from dspTarget x " +
+            "where cid=:cid  " +
+            "and x.date=:date " +
+            "and (x.clusterId=:clusterId or :clusterId=-1) " +
+            " ")
+    fun dspTarget(cid:String,date:String,clusterId:Int):List<Data.TargetDsp>
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
 }

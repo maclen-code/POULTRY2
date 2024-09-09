@@ -1,6 +1,6 @@
 package com.example.poultry2.data.dspTarget
 
-
+import com.example.poultry2.data.Data
 
 
 class DspTargetRepository(private val dspTargetDao: DspTargetDao) {
@@ -27,7 +27,7 @@ class DspTargetRepository(private val dspTargetDao: DspTargetDao) {
         dspTargetDao.uploadSuccess(cid,rid,date)
     }
 
-//    fun getAll(rid:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.Target>>{
-//        return dspTargetDao.getAll(rid,date,salesFrom,salesTo)
-//    }
+    fun dspTarget(cid:String,date:String,clusterId:Int):List<Data.TargetDsp>{
+        return dspTargetDao.dspTarget(cid,date,clusterId)
+    }
 }

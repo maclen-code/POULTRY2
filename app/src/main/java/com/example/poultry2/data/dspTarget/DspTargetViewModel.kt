@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.poultry2.data.AppDatabase
+import com.example.poultry2.data.Data
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -37,8 +38,7 @@ class DspTargetViewModel(application: Application) : AndroidViewModel(applicatio
         repository.uploadSuccess(cid,rid,date)
     }
 
-//    fun getAll(rid:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.Target>>{
-//        return repository.getAll(rid,date,salesFrom,salesTo)
-//    }
-
+    fun dspTarget(cid:String,date:String,clusterId:Int):List<Data.TargetDsp>{
+        return repository.dspTarget(cid,date,clusterId)
+    }
 }

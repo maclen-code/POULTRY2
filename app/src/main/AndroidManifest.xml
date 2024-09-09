@@ -35,6 +35,14 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <activity
+            android:name=".ui.dashboard.global.acct.acctDashboard.AccountDashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
+        <activity
+            android:name=".ui.dashboard.global.customer.customerDashboard.CustomerDashboardActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"  />
+        <activity
             android:name=".ui.dashboard.cluster.tradeDspDashboard.TradeDspDashboardActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="false"  />

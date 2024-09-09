@@ -12,10 +12,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.poultry2.R
 import com.example.poultry2.databinding.ActivityMainBinding
+import com.example.poultry2.ui.function.MyDate.toLocalDate
 import com.example.poultry2.ui.global.filter.Filter
+import com.example.poultry2.ui.sync.Sync
 import com.google.android.material.navigation.NavigationView
 import java.time.LocalDate
-
+import java.time.temporal.ChronoUnit
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +44,6 @@ class MainActivity : AppCompatActivity() {
             setOf(
                 R.id.nav_dashboard,
                 R.id.nav_sync,
-                R.id.nav_downloadMap,
                 R.id.nav_user,
                 R.id.nav_servers
             ), drawerLayout
@@ -56,6 +57,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         getFilterSupervisor()
+
+
 
 //        askForStoragePermission()
 

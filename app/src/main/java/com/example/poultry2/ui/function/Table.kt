@@ -2,21 +2,16 @@ package com.example.poultry2.ui.function
 
 import android.content.Context
 import android.graphics.Typeface
-import android.print.PrintAttributes
 import android.print.PrintAttributes.Margins
+import android.text.Layout.Alignment
 import android.view.Gravity
 import android.widget.ImageView
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
-import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
-import androidx.core.view.setPadding
 import com.example.poultry2.R
-import com.example.poultry2.ui.function.MyDate.toDateString
 import com.example.poultry2.ui.function.Theme.resolveColorAttr
-import java.time.LocalDate
-import java.time.temporal.TemporalAdjusters
 
 
 object Table {
@@ -28,8 +23,9 @@ object Table {
                        span:Int=1,
                        typeface: Int=Typeface.NORMAL, size: Float =12f
     ): TextView {
-        val lp: TableRow.LayoutParams =
+        var lp: TableRow.LayoutParams =
             TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+        if (text.length>35) lp=TableRow.LayoutParams(500,TableRow.LayoutParams.WRAP_CONTENT)
         lp.span = span // define no. of column span will row do
 
         val margins: Margins = if (firstCell)
@@ -84,8 +80,11 @@ object Table {
              span:Int=1,
              typeface: Int=Typeface.NORMAL, size: Float =14f
     ): TextView {
-        val lp: TableRow.LayoutParams =
-            TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
+
+        var lp: TableRow.LayoutParams =
+            TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+        if (text.length>35) lp=TableRow.LayoutParams(500,TableRow.LayoutParams.WRAP_CONTENT)
+
         lp.span = span // define no. of column span will row do
 
         val margins: Margins = if (firstCell)
@@ -99,6 +98,7 @@ object Table {
 
 //        val backColor = context.resolveColorAttr(android.R.attr.textColorPrimaryInverse)
         val tv = TextView(context)
+
         tv.layoutParams=lp
         tv.setTextColor(textColor)
         tv.setBackgroundColor(backColor)
@@ -110,35 +110,7 @@ object Table {
         return tv
     }
 
-    fun cellBold(context: Context, text:String, gravity:Int= Gravity.CENTER,
-             textColor:Int=context.resolveColorAttr(android.R.attr.textColorSecondary),
-             firstCell:Boolean=false,
-             span:Int=1,
-             typeface: Int=Typeface.BOLD, size: Float =14f
-    ): TextView {
-        val lp: TableRow.LayoutParams =
-            TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
-        lp.span = span // define no. of column span will row do
 
-        val margins: Margins = if (firstCell)
-            Margins(1,0,1, 1)
-        else
-            Margins(0,0,1, 1)
-
-        lp.setMargins(margins.leftMils,margins.topMils,margins.rightMils,margins.bottomMils)
-
-        val backColor=context.resolveColorAttr(android.R.attr.windowBackground)
-        val tv = TextView(context)
-        tv.layoutParams=lp
-        tv.setTextColor(textColor)
-        tv.setBackgroundColor(backColor)
-        tv.text=text
-        tv.setTypeface(null,typeface)
-        tv.gravity = gravity
-        tv.textSize = size
-        tv.setPadding(15,10,15,10)
-        return tv
-    }
 
     fun customCell(context: Context, text:String, gravity:Int= Gravity.CENTER,
              textColor:Int=context.resolveColorAttr(android.R.attr.textColorSecondary),
@@ -146,8 +118,9 @@ object Table {
              typeface: Int=Typeface.NORMAL, size: Float =14f,
                    margins: Margins =Margins(0,0,0,0)
     ): TextView {
-        val lp: TableRow.LayoutParams =
-            TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
+        var lp: TableRow.LayoutParams =
+            TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+        if (text.length>35) lp=TableRow.LayoutParams(500,TableRow.LayoutParams.WRAP_CONTENT)
         lp.span = span // define no. of column span will row do
 
         lp.setMargins(margins.leftMils,margins.topMils,margins.rightMils,margins.bottomMils)
@@ -170,8 +143,9 @@ object Table {
                 span:Int=1,
                 typeface: Int=Typeface.BOLD, size: Float =14f
     ): TextView {
-        val lp: TableRow.LayoutParams =
-            TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
+        var lp: TableRow.LayoutParams =
+            TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,TableRow.LayoutParams.MATCH_PARENT)
+        if (text.length>35) lp=TableRow.LayoutParams(500,TableRow.LayoutParams.WRAP_CONTENT)
         lp.span = span // define no. of column span will row do
 
         val margins: Margins = if (firstCell)
@@ -182,6 +156,8 @@ object Table {
         lp.setMargins(margins.leftMils,margins.topMils,margins.rightMils,margins.bottomMils)
 
         val backColor=context.resolveColorAttr(android.R.attr.windowBackground)
+
+
         val tv = TextView(context)
         tv.layoutParams=lp
         tv.setTextColor(textColor)
@@ -260,7 +236,7 @@ object Table {
     }
 
     fun icon(context: Context,
-             icon:Int?,
+             icon:Int= R.drawable.ic_open,
              firstCell:Boolean=false,
              span:Int=1,
              color:Int=context.resolveColorAttr(android.R.attr.textColorSecondary)

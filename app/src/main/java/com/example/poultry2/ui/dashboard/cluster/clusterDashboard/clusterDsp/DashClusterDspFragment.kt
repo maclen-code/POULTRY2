@@ -15,11 +15,16 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.poultry2.R
 import com.example.poultry2.data.Data
+import com.example.poultry2.data.dspTarget.DspTargetViewModel
 import com.example.poultry2.data.sov.SovViewModel
+import com.example.poultry2.data.sovSmis.SovSmisViewModel
 import com.example.poultry2.databinding.FragmentDashBinding
 import com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterDsp.clusterDspDashboard.ClusterDspDashboardActivity
+import com.example.poultry2.ui.dashboard.cluster.tradeDspDashboard.TradeDspDashboardActivity
 import com.example.poultry2.ui.dashboard.global.uba.notOrdered.NotOrderedActivity
 import com.example.poultry2.ui.dashboard.global.uba.ordered.OrderedActivity
+import com.example.poultry2.ui.function.MyDate.monthFirstDate
+import com.example.poultry2.ui.function.MyDate.toLocalDate
 import com.example.poultry2.ui.global.filter.Filter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -82,18 +87,38 @@ class DashClusterDspFragment : Fragment(){
             val vm =
                 ViewModelProvider(this@DashClusterDspFragment)[SovViewModel::class.java]
 
+            val vmSmis =
+                ViewModelProvider(this@DashClusterDspFragment)[SovSmisViewModel::class.java]
+
+            val vmTarget =
+                ViewModelProvider(this@DashClusterDspFragment)[DspTargetViewModel::class.java]
+
 
             val listSovDspTrade=vm.sovTradeDsp(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType, clusterId)
 
             val listSovDspBunit=vm.sovDspBunit(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
-                Filter.transType, clusterId,"")
+                Filter.transType, clusterId,"").toMutableList()
+
+            val listSovSmisDspBunit=vmSmis.sovDspBunit(
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
+                Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
+                Filter.transType, clusterId)
+
+            listSovDspBunit.addAll(listSovSmisDspBunit)
+
+            val listTarget=vmTarget.dspTarget(Filter.cid,
+                Filter.dates.from.toLocalDate().monthFirstDate(),clusterId)
+
+
+
 
 //            if (Filter.dates.from!= LocalDate.now().monthFirstDate()
 //                ||  Filter.dates.to.toLocalDate()!= LocalDate.now()) {
@@ -115,11 +140,20 @@ class DashClusterDspFragment : Fragment(){
                     Data.SovDspVolume(item.key,item.value.maxOf { it.dsp} ,
                         item.value.sumOf { it.totalNet} )
                 }.sortedByDescending { it.volume }.forEach { x->
+
+                    val target=Data.TargetDsp(x.rid,0,0)
+                    val temp=listTarget.firstOrNull { it.rid == x.rid }
+                    if (temp!=null) {
+                        target.volumeTarget=temp.volumeTarget
+                        target.amountTarget=temp.amountTarget
+                    }
+
                     listDashDsp.add(
                         Data.SovDashClusterDsp(
                             x.rid,x.dsp,
                             listSovDspTrade.filter { it.rid==x.rid},
-                            listSovDspBunit.filter { it.rid==x.rid }
+                            listSovDspBunit.filter { it.rid==x.rid },
+                            target
                         )
                     )
                 }
@@ -145,6 +179,8 @@ class DashClusterDspFragment : Fragment(){
                       intent.putExtra("cluster", cluster)
                       if (map.containsKey("tradeCode"))
                           intent.putExtra("tradeCode", map["tradeCode"])
+                      if (map.containsKey("productType"))
+                          intent.putExtra("productType", map["productType"])
                       if (map.containsKey("bunitId"))
                           intent.putExtra("bunitId", map["bunitId"])
                       if (map.containsKey("bunit"))  intent.putExtra("bunit", map["bunit"])
@@ -153,6 +189,16 @@ class DashClusterDspFragment : Fragment(){
 
                       startActivity(intent)
                   }
+
+                adapter.onDspTradeClick={map ->
+                    val intent = Intent(activity, TradeDspDashboardActivity::class.java)
+                    intent.putExtra("clusterId", clusterId)
+                    intent.putExtra("cluster", cluster)
+                    intent.putExtra("tradeCode", map["tradeCode"])
+                    intent.putExtra("rid",map["rid"])
+                    intent.putExtra("dsp",map["dsp"])
+                    startActivity(intent)
+                }
                   binding.progress.visibility=View.GONE
             }
         }

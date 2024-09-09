@@ -1,7 +1,9 @@
 package com.example.poultry2.data
 
 import android.os.Parcelable
+import com.example.poultry2.data.inventory.Inventory
 import kotlinx.parcelize.Parcelize
+import java.time.LocalDate
 
 class Data {
     class Policy(var name:String, var userTypeCodeList:List<String>)
@@ -14,9 +16,6 @@ class Data {
                  var userType: String,var userCode: String,var isLocal: Boolean,
                  var dbaseVersion:String,var lastSync:String):Parcelable
 
-    class FilterSupervisor(var sno:String, var supervisor:String, var area: String,
-                           var isChecked: Boolean)
-
     class Dates(var from:String,var to:String,var universeFrom:String,
                      var lastMonthFrom:String,var lastMonthTo:String,
                      var lastYearFrom:String,var lastYearTo:String)
@@ -24,13 +23,23 @@ class Data {
 
     class FilterTransType(var transType:String,var type:String, var isChecked: Boolean)
 
+    class SyncPeriod(var from:LocalDate,var to:LocalDate,var days:Int,
+                     var siv:Boolean,var sov:Boolean)
+
     class Sync(var download:Boolean,var dataName:String,var process:String,var progress:Double,
-               var status:String,var error:String)
+               var status:String,var error:String,var time:Long=0)
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     @Parcelize
-    class TargetCluster(var clusterId:String,var cluster: String,
+    class Target(var volumeTarget:Int,var amountTarget: Int):Parcelable
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    @Parcelize
+    class TargetCluster(var clusterId:Int,var cluster: String,
                  var volumeTarget:Int,var amountTarget:Int):Parcelable
+
+    @Parcelize
+    class TargetDsp(var rid:String,var volumeTarget:Int,var amountTarget:Int):Parcelable
 
     //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -39,10 +48,14 @@ class Data {
 
     class SovDspVolume(var rid: String,var dsp: String, var volume:Double)
     class SovChannelVolume(var channel: String, var volume:Double)
+
+    class SovBunitVolume(var bunitId: String,var bunit: String, var volume:Double)
+
     class SovCategoryVolume(var catId:String,var category: String, var volume:Double)
     class SovCustomerVolume(var customerNo: String, var customer: String, var volume:Double)
 
     class SovAcctVolume(var acctNo: String, var storeName: String, var volume:Double)
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -68,8 +81,8 @@ class Data {
                           var lastYearVolume:Double,var lastMonthVolume:Double)
 
     class SovClusterDsp(var clusterId: Int,var cluster: String, var rid:String,var dsp:String,
-                        var volume:Double,var volumeTarget:Int,var totalNet:Double,
-                        var ordered:Int, var universe:Int,
+                        var volume:Double,var volumeTarget:Int,var amountTarget:Int,
+                        var totalNet:Double,var ordered:Int, var universe:Int,
                         var lastYearVolume:Double,var lastMonthVolume:Double)
 
     class SovTradeDsp(var tradeCode: String,var rid:String, var dsp:String,
@@ -81,7 +94,7 @@ class Data {
                           var lastYearVolume:Double,var lastMonthVolume:Double)
 
 
-    class SovDspBunit(var rid:String,var dsp: String,var bunitId: String,var bunit: String,
+    class SovDspBunit(var productType:String, var rid:String,var dsp: String,var bunitId: String,var bunit: String,
                       var volume:Double,var totalNet:Double,var ordered:Int,var universe:Int,
                       var lastYearVolume:Double,var lastMonthVolume:Double)
 
@@ -99,13 +112,23 @@ class Data {
                              var volume:Double, var totalNet:Double,var ordered:Int, var universe:Int,
                              var lastYearVolume:Double,var lastMonthVolume:Double)
 
+    class SovCategory(var catId:String,var category: String,
+                     var volume:Double, var totalNet:Double, var ordered:Int,
+                     var universe: Int, var lastYearVolume:Double,
+                     var lastMonthVolume:Double, var volumeUnit:String)
+
+    class SovProduct(var catId:String,var category: String, var itemCode:String, var itemDesc:String,
+                     var volume:Double, var totalNet:Double, var ordered:Int,
+                     var universe: Int, var lastYearVolume:Double,
+                     var lastMonthVolume:Double, var volumeUnit:String)
+
     class SovCustomer(var customerNo:String, var customer: String,
                       var volume:Double,var totalNet: Double,
                       var lastYearVolume: Double,var lastMonthVolume: Double)
 
     class CustomerArSummary(var customerNo:String, var customer: String,var balanceType: String,
                             var a1: Double,var a2: Double,var a3: Double,
-                            var a4: Double,var total: Double)
+                            var a4: Double, var a5: Double,var total: Double)
 
     class SovAcct(var acctNo: String, var storeName: String,
                   var volume:Double,var totalNet: Double,
@@ -113,14 +136,19 @@ class Data {
 
     class AcctArSummary(var acctNo: String, var storeName: String,var balanceType: String,
                         var a1: Double,var a2: Double,var a3: Double,
-                        var a4: Double,var total: Double)
+                        var a4: Double,var a5: Double,var total: Double)
 
     class ArSummary(var balanceType: String,var a1: Double,var a2: Double,var a3: Double,
-                    var a4: Double,var total: Double)
+                    var a4: Double,var a5: Double,var total: Double)
 
     class ArInvoice(var agingId:Int,var aging:String,var date:String,var invoiceNo:String,
                     var balanceType:String,var terms:String,var dueDate:String,var balance: Double,
                     var checkNo:String,var checkDate:String?,var isChecked: Boolean)
+
+    class SivSovClusterCategory(var catId: String,var category: String,
+                        var sivVolume:Double,var sivAmount:Double,
+                        var sovVolume:Double,var sovAmount:Double)
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -139,7 +167,8 @@ class Data {
 
     class SovDashClusterDsp(var rid:String, var dsp: String,
                             var listSovDspTrade:List<SovTradeDsp>,
-                            var listSovDspBunit:List<SovDspBunit>)
+                            var listSovDspBunit:List<SovDspBunit>,
+                            var target:TargetDsp)
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
@@ -190,29 +219,28 @@ class Data {
 
     /////////////////////////////////////////////////////////////////////////////////////////////
 
+    class SovInvoiceProduct(var invoiceNo: String,var date:String, var itemCode:String,
+                            var itemDesc:String,var volume: Double,var totalNet: Double)
 
+    class SovInvoiceDate(var invoiceNo: String,var date:String)
+
+    class SovInvoice(var invoiceNo: String,var date:String,
+                     var listProduct:List<SovInvoiceProduct>)
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    class SovBunitCategory(var acctNo:String,var bunitId: String, var bunit: String,
+                             var catId: String, var category:String, var volume:Double,
+                             var totalNet: Double,
+                             var lastYearVolume: Double,var lastMonthVolume: Double)
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
     class ArAging(var agingId:Int,var aging: String,var total:Double)
 
     /////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     class SovCustomerAcct(var customerNo:String, var customer: String, var acctNo: String,
                           var storeName: String,
@@ -222,20 +250,9 @@ class Data {
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    class SovCategory(var catId:String,var category: String,
-                     var volume:Double, var totalNet:Double, var ordered:Int,
-                     var universe: Int, var lastYearVolume:Double,
-                     var lastMonthVolume:Double)
-
-    class SovProduct(var catId:String,var category: String, var itemCode:String, var itemDesc:String,
-                            var volume:Double, var totalNet:Double, var ordered:Int,
-                            var universe: Int, var lastYearVolume:Double,
-                            var lastMonthVolume:Double, var volumeUnit:String)
-
-
-    class SovDashProduct(var category: String,
-                         var listSovCategory:List<SovCategory>,
-                         var listSovProduct:List<SovProduct>)
+    class SovDashProduct(var catId:String,var category: String,
+                         var listSovProduct:List<SovProduct>,
+                         var sovCategory:SovCategory?)
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -252,6 +269,5 @@ class Data {
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
+    class SovDashInventory(var catId:String,var category: String,var listInventory:List<Inventory>)
 }

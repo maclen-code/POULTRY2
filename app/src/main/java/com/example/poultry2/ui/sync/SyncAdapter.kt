@@ -39,7 +39,10 @@ class SyncAdapter internal constructor(context: Context) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val current = data[position]
         with (holder) {
-            binding.tvData.text = current.dataName
+            var mode="Upload"
+            if (current.download) mode="Download"
+
+            binding.tvData.text = "$mode\n${current.dataName}"
             binding.tvStatus.text=current.status
 
             if (current.process=="error") {

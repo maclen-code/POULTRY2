@@ -99,7 +99,7 @@ class DashClusterDspCategoryFragment : Fragment(){
 
 
             val listSovCategoryChannel=vm.sovCategoryChannel(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType,clusterId,"",rid)

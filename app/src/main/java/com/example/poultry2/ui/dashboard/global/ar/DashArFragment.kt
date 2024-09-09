@@ -96,7 +96,7 @@ class DashArFragment : Fragment(){
             val vm =
                 ViewModelProvider(this@DashArFragment)[ArViewModel::class.java]
 
-            val listArSummary=vm.arSummary(Filter.cid,Filter.sno,clusterId,tradeCode,rid,channel,
+            val listArSummary=vm.arSummary(Filter.cid,clusterId,tradeCode,rid,channel,
                 acctNo,customerNo)
             scopeMainThread.launch {
                 adapter.setData(listArSummary)

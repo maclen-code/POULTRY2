@@ -5,12 +5,12 @@ import com.example.poultry2.data.Data
 import com.example.poultry2.ui.global.filter.Filter
 
 object Sync {
-
+    var listPeriod=mutableListOf<Data.SyncPeriod>()
     var listData=mutableListOf<Data.Sync>()
     var mode=2
     var cid=""
-    var dateFrom=""
-    var dateTo=""
+//    var dateFrom=""
+//    var dateTo=""
 
     fun add(download:Boolean, dataName:String,userTypeCodeList:List<String>?=null){
         var add=false
@@ -33,15 +33,20 @@ object Sync {
 
     fun createSyncList(){
 //        add(true,"Address")
+        add(false,"Siv Target")
+        add(false,"Dsp Target")
+////
         add(true,"Siv Target")
         add(true,"Dsp Target")
-        add(true,"Account Target")
+//        add(true,"Account Target")
 
         add(true,"Siv")
         add(true,"Sov")
+        add(true,"Sov SMIS")
         add(true,"Sov Promo")
 
         add(true,"AR")
+        add(true,"Inventory")
 
     }
 }

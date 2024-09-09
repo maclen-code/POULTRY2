@@ -10,19 +10,17 @@ import com.example.poultry2.databinding.ActivityFilterBinding
 import com.example.poultry2.ui.function.Theme.resolveColorAttr
 import com.example.poultry2.ui.global.filter.period.FilterPeriodFragment
 import com.example.poultry2.ui.global.filter.server.FilterServerFragment
-import com.example.poultry2.ui.global.filter.supervisor.FilterSupervisorFragment
 import com.example.poultry2.ui.global.filter.transType.FilterTransTypeFragment
 import com.google.android.material.tabs.TabLayout
 import java.util.*
 
 
 class FilterActivity : AppCompatActivity() {
-    private var clusterId=0
+    private var clusterId=-1
     private lateinit var binding: ActivityFilterBinding
     private var range= Filter.range
 
     private var tempCid=""
-    private var tempSno=""
     private var tempTransType=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,13 +36,12 @@ class FilterActivity : AppCompatActivity() {
 
 
         val intent = intent
-        if (intent.hasExtra("clusterId")) clusterId=intent.getIntExtra("clusterId",0)
+        if (intent.hasExtra("clusterId")) clusterId=intent.getIntExtra("clusterId",-1)
 
         setTabs()
         showActiveTabFragment()
 
         tempCid= Filter.cid
-        tempSno= Filter.sno
         tempTransType= Filter.transType
 
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
@@ -55,7 +52,6 @@ class FilterActivity : AppCompatActivity() {
                     when (tab.text.toString().lowercase(Locale.ROOT)) {
                         "period" -> fragment= FilterPeriodFragment()
                         "server" -> fragment= FilterServerFragment()
-                        "supervisor" -> fragment = FilterSupervisorFragment()
                         "record type" -> fragment = FilterTransTypeFragment()
                     }
                     transaction.replace(R.id.fragment, fragment!!)
@@ -85,8 +81,6 @@ class FilterActivity : AppCompatActivity() {
 
 
 
-
-
     private fun setTabs(){
         val filter:Array<String> = intent.getStringArrayExtra("filter") as Array<String>
         filter.forEach {
@@ -111,7 +105,6 @@ class FilterActivity : AppCompatActivity() {
             when (tab.text.toString().lowercase(Locale.ROOT)) {
                 "period" -> fragment = FilterPeriodFragment()
                 "server" -> fragment = FilterServerFragment()
-                "supervisor" -> fragment = FilterSupervisorFragment()
                 "record type" -> fragment = FilterTransTypeFragment()
             }
             transaction.replace(R.id.fragment, fragment!!)
@@ -131,8 +124,6 @@ class FilterActivity : AppCompatActivity() {
       if ( range!= Filter.range)
             Filter.updated.postValue(true)
       else if (tempCid!= Filter.cid)
-          Filter.updated.postValue(true)
-      else if (tempSno!= Filter.sno)
           Filter.updated.postValue(true)
       else if (tempTransType!= Filter.transType)
           Filter.updated.postValue(true)

@@ -21,13 +21,19 @@ class SivRepository(private val sivDao: SivDao) {
         return sivDao.getCid(cid,dateFrom,dateTo)
     }
     ///////////////////////////////////////////////////////////////////////////////////////////
-    fun sivSovCluster(cid:String,sno: String,dateFrom:String,dateTo:String):List<Data.SivSovCluster>{
-        return sivDao.sivSovCluster(cid,sno,dateFrom,dateTo)
+    fun sivSovCluster(cid:String,dateFrom:String,dateTo:String):List<Data.SivSovCluster>{
+        return sivDao.sivSovCluster(cid,dateFrom,dateTo)
     }
 
-    fun volumeClusterTradeType(cid:String,sno: String,dateFrom:String,dateTo:String):List<Data.SivSovClusterTradeType>{
-        return sivDao.volumeClusterTradeType(cid,sno,dateFrom,dateTo)
+    fun volumeClusterTradeType(cid:String,dateFrom:String,dateTo:String):List<Data.SivSovClusterTradeType>{
+        return sivDao.volumeClusterTradeType(cid,dateFrom,dateTo)
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
+
+    fun sivSovClusterCategory(cid:String,dateFrom:String,dateTo:String,
+                              clusterId:Int):List<Data.SivSovClusterCategory>{
+        return sivDao.sivSovClusterCategory(cid,dateFrom,dateTo,clusterId)
+    }
+
 }

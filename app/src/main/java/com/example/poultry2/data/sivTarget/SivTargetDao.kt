@@ -20,20 +20,20 @@ interface SivTargetDao {
     fun upload(cid:String):List<SivTarget>
 
     @Query("Update sivTarget set uploaded=1 where cid=:cid and clusterId=:clusterId and date=:date and uploaded=0")
-    fun uploadSuccess(cid: String,clusterId:String,date:String)
+    fun uploadSuccess(cid: String,clusterId:Int,date:String)
 
     @Query("Select x.clusterId, x.cluster,ifnull(z.volumeTarget,0) volumeTarget," +
             "ifnull(z.amountTarget,0) amountTarget " +
             "FROM  siv x " +
             "left join  " +
             "(select x.clusterId,x.volumeTarget,x.amountTarget from sivTarget x " +
-            "where (:sno like '%' || sno || '%'  or :sno='') " +
+            "where cid=:cid " +
             "and x.date=:date ) z  " +
             "on z.clusterId=x.clusterId  " +
-            "where (:sno like '%' || sno || '%'  or :sno='') " +
+            "where  cid=:cid " +
             "and date between :salesFrom and :salesTo " +
-            "group by x.bunitId,x.bUnit,x.catId,x.category")
-    fun getAll(sno:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.TargetCluster>>
+            "group by x.clusterId,x.cluster")
+    fun getAll(cid:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.TargetCluster>>
     //////////////////////////////////////////////////////////////////////////////////////////////
 
 

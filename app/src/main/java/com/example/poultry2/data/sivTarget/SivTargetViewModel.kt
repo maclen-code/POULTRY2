@@ -35,12 +35,12 @@ class SivTargetViewModel(application: Application) : AndroidViewModel(applicatio
         return repository.upload(cid)
     }
 
-    fun uploadSuccess(cid: String,clusterId:String,date:String){
+    fun uploadSuccess(cid: String,clusterId:Int,date:String){
         repository.uploadSuccess(cid,clusterId,date)
     }
 
-    fun getAll(sno:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.TargetCluster>>{
-        return repository.getAll(sno,date,salesFrom,salesTo)
+    fun getAll(cid:String,date:String,salesFrom:String,salesTo:String):LiveData<List<Data.TargetCluster>>{
+        return repository.getAll(cid,date,salesFrom,salesTo)
     }
 
 }

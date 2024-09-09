@@ -14,23 +14,34 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.poultry2.R
 import com.example.poultry2.data.Data
+import com.example.poultry2.data.dspTarget.DspTarget
+import com.example.poultry2.data.dspTarget.DspTargetViewModel
+import com.example.poultry2.data.sivTarget.SivTarget
+import com.example.poultry2.data.sivTarget.SivTargetViewModel
 import com.example.poultry2.data.sov.SovViewModel
 import com.example.poultry2.databinding.FragmentDashBinding
 import com.example.poultry2.ui.dashboard.cluster.clusterDashboard.ClusterDashboardActivity
 import com.example.poultry2.ui.dashboard.global.uba.notOrdered.NotOrderedActivity
 import com.example.poultry2.ui.dashboard.global.uba.ordered.OrderedActivity
+import com.example.poultry2.ui.function.MyDate.monthFirstDate
+import com.example.poultry2.ui.function.MyDate.toLocalDate
+import com.example.poultry2.ui.function.Utils.toInt
 import com.example.poultry2.ui.global.filter.Filter
+import com.example.poultry2.ui.global.target.UpdateTargetDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
-class DashClusterFragment : Fragment(){
+class DashClusterFragment : Fragment(),UpdateTargetDialog.DialogListener{
 
     private var _binding: FragmentDashBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var adapter: DashClusterAdapter
+    private lateinit var dspTarget:DspTarget
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -74,13 +85,13 @@ class DashClusterFragment : Fragment(){
                 ViewModelProvider(this@DashClusterFragment)[SovViewModel::class.java]
 
             val listSovClusterTrade=vm.sovClusterTrade(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType)
 
             val listSovClusterDsp=vm.sovClusterDsp(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.dates.universeFrom,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,
                 Filter.transType)
@@ -132,8 +143,41 @@ class DashClusterFragment : Fragment(){
 
                       startActivity(intent)
                   }
+
+                adapter.onTargetClick={ col,map ->
+                    val args = Bundle()
+                    args.putString("source", "fragment")
+                    args.putString("title", map["dsp"])
+                    args.putInt("volumeTarget", map["volumeTarget"]!!.toInt())
+                    args.putInt("amountTarget", map["amountTarget"]!!.toInt())
+
+                    val targetDate=Filter.dates.from.toLocalDate().monthFirstDate()
+                    dspTarget= DspTarget(map["rid"]!!,Filter.cid,map["clusterId"]!!.toInt(),
+                        targetDate,map["volumeTarget"]!!.toInt(),map["amountTarget"]!!.toInt(),false)
+
+                    val updateTargetDialog = UpdateTargetDialog()
+                    updateTargetDialog.arguments = args
+                    updateTargetDialog.show(
+                        childFragmentManager, "target"
+                    )
+
+                }
                   binding.progress.visibility=View.GONE
             }
+        }
+    }
+
+    override fun onFinishSetTargetDialog(volumeTarget: Int, amountTarget: Int) {
+        val job = Job()
+        val scopeIO = CoroutineScope(job + Dispatchers.IO)
+        scopeIO.launch {
+            val vm =
+                ViewModelProvider(this@DashClusterFragment)[DspTargetViewModel::class.java]
+
+            dspTarget.volumeTarget=volumeTarget
+            dspTarget.amountTarget=amountTarget
+            vm.insert(dspTarget)
+            Filter.updated.postValue(true)
         }
     }
 }

@@ -26,19 +26,19 @@ class ArViewModel(application: Application) : AndroidViewModel(application) {
         repository.deleteAll(cid)
     }
 
-    fun customerArSummary(cid:String,sno:String,clusterId:Int,tradeCode:String,rid:String,customerNo:String,
+    fun customerArSummary(cid:String,clusterId:Int,tradeCode:String,rid:String,customerNo:String,
                              balanceType:String):List<Data.CustomerArSummary>{
-        return repository.customerArSummary(cid,sno,clusterId,tradeCode,rid,customerNo,balanceType)
+        return repository.customerArSummary(cid,clusterId,tradeCode,rid,customerNo,balanceType)
     }
 
-    fun acctArSummary(cid:String,sno:String,clusterId:Int,tradeCode: String,rid:String,
+    fun acctArSummary(cid:String,clusterId:Int,tradeCode: String,rid:String,
                       balanceType:String):List<Data.AcctArSummary>{
-        return repository.acctArSummary(cid,sno,clusterId,tradeCode,rid,balanceType)
+        return repository.acctArSummary(cid,clusterId,tradeCode,rid,balanceType)
     }
 
-    fun arSummary(cid:String,sno:String,clusterId: Int,tradeCode: String,rid:String,
+    fun arSummary(cid:String,clusterId: Int,tradeCode: String,rid:String,
                   customerNo:String,channel:String, balanceType:String):List<Data.ArSummary>{
-        return repository.arSummary(cid,sno,clusterId,tradeCode,rid,customerNo,channel,balanceType)
+        return repository.arSummary(cid,clusterId,tradeCode,rid,customerNo,channel,balanceType)
     }
 
     fun arInvoice(acctNo:String, balanceType:String):List<Data.ArInvoice>{

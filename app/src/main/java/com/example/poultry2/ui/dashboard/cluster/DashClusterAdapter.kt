@@ -23,8 +23,9 @@ class DashClusterAdapter internal constructor()
 
     private var data = emptyList<Data.SovDashCluster>() // Cached copy of words
     var onItemClick: ((Data.SovDashCluster)->Unit) ?= null
-
     var onCellClick: ((String,Map<String,String>)->Unit) ?= null
+    var onTargetClick: ((String,Map<String,String>)->Unit) ?= null
+
 
     inner class ViewHolder(val binding: ItemDashBinding) : RecyclerView.ViewHolder(binding.root) {
         init{
@@ -58,7 +59,7 @@ class DashClusterAdapter internal constructor()
             if (current.listSovClusterTrade.size>1)
                 table1Subtotal(binding.table1,current.listSovClusterTrade)
 
-            val headers2=  listOf("DSP","VOLUME","AMOUNT","","TARGET","VARIANCE","%","ORDERED","UNIVERSE",
+            val headers2=  listOf("DSP","VOLUME","AMOUNT","","TARGET","","VARIANCE","%","ORDERED","UNIVERSE",
                 "VARIANCE","","%","LAST YEAR","GROWTH","LAST MONTH","GROWTH")
 
             Table.createHeader(headerTitle(current.cluster,headers2[0]) , headers2,binding.table2,
@@ -100,7 +101,7 @@ class DashClusterAdapter internal constructor()
                 Utils.formatDoubleToString(item.totalNet,0),
                 Gravity.END,textColor))
 
-            val imgVolume=Table.icon(context, R.drawable.ic_open)
+            val imgVolume=Table.icon(context)
             row.addView(imgVolume)
 
             if (item.volume>0) {
@@ -125,7 +126,7 @@ class DashClusterAdapter internal constructor()
             row.addView(Table.cell(context, Utils.formatIntToString(variance),
                 Gravity.END,textColor))
 
-            val imgUba=Table.icon(context, R.drawable.ic_open)
+            val imgUba=Table.icon(context)
             row.addView(imgUba)
 
             if (variance<0) {
@@ -192,7 +193,7 @@ class DashClusterAdapter internal constructor()
         row.addView(Table.subCell(context, Utils.formatDoubleToString(totalNet,0),
             Gravity.END,textColor))
 
-        val imgVolume=Table.icon(context, R.drawable.ic_open)
+        val imgVolume=Table.icon(context)
         row.addView(imgVolume)
 
         if (volume!=0.0) {
@@ -219,7 +220,7 @@ class DashClusterAdapter internal constructor()
         row.addView(Table.subCell(context, Utils.formatIntToString(variance), Gravity.END,
             textColor))
 
-        val imgUba=Table.icon(context, R.drawable.ic_open)
+        val imgUba=Table.icon(context)
         row.addView(imgUba)
 
         if (variance<0) {
@@ -233,7 +234,7 @@ class DashClusterAdapter internal constructor()
 
         var strOrderPercent="-"
         if (orderedPercent>0)  strOrderPercent=Utils.formatDoubleToString(orderedPercent) + " %"
-        row.addView(Table.cell(context, strOrderPercent, Gravity.END,textColor))
+        row.addView(Table.subCell(context, strOrderPercent, Gravity.END,textColor))
 
         row.addView(
             Table.subCell(context, Utils.formatDoubleToString(lastYearVolume,0),
@@ -286,7 +287,7 @@ class DashClusterAdapter internal constructor()
                 Utils.formatDoubleToString(item.totalNet,0),
                 Gravity.END,textColor))
 
-            val imgVolume=Table.icon(context, R.drawable.ic_open)
+            val imgVolume=Table.icon(context)
             row.addView(imgVolume)
 
             if (item.volume>0) {
@@ -305,8 +306,25 @@ class DashClusterAdapter internal constructor()
             row.addView(Table.cell(context,  Utils.formatIntToString(item.volumeTarget),
                 Gravity.END,textColor))
 
+            val imgDspTarget=Table.icon(context)
+            row.addView(imgDspTarget)
+
+            imgDspTarget.setOnClickListener {
+                val map = mutableMapOf<String, String>()
+                map["clusterId"] = item.clusterId.toString()
+                map["cluster"] = item.cluster
+                map["rid"] = item.rid
+                map["dsp"] = item.dsp
+                map["volumeTarget"] = item.volumeTarget.toString()
+                map["amountTarget"] = item.amountTarget.toString()
+
+                onTargetClick?.invoke("volume",map)
+            }
+
+
             var targetVariance = 0.0
             if (item.volumeTarget > 0) targetVariance = item.volume - item.volumeTarget
+
 
             row.addView(Table.cell(context,
                 Utils.formatDoubleToString(targetVariance,0),
@@ -329,7 +347,7 @@ class DashClusterAdapter internal constructor()
             row.addView(Table.cell(context, Utils.formatIntToString(variance),
                 Gravity.END,textColor))
 
-            val imgUba=Table.icon(context, R.drawable.ic_open)
+            val imgUba=Table.icon(context)
             row.addView(imgUba)
 
             if (variance<0) {
@@ -403,7 +421,7 @@ class DashClusterAdapter internal constructor()
         row.addView(Table.subCell(context, Utils.formatDoubleToString(totalNet,0),
             Gravity.END,textColor))
 
-        val imgVolume=Table.icon(context, R.drawable.ic_open)
+        val imgVolume=Table.icon(context)
         row.addView(imgVolume)
 
         if (volume>0) {
@@ -420,7 +438,9 @@ class DashClusterAdapter internal constructor()
             Table.subCell(context, Utils.formatIntToString(volumeTarget), Gravity.END,
                 textColor))
 
-
+        row.addView(
+            Table.subCell(context, "", Gravity.END,
+                textColor))
 
         var targetVariance = 0.0
         if (volumeTarget > 0) targetVariance = volume - volumeTarget
@@ -431,7 +451,7 @@ class DashClusterAdapter internal constructor()
 
         var strVolumePercent="-"
         if (volumePercent>0) strVolumePercent=Utils.formatDoubleToString(volumePercent) + " %"
-        row.addView(Table.cell(context,strVolumePercent,Gravity.END,textColor))
+        row.addView(Table.subCell(context,strVolumePercent,Gravity.END,textColor))
 
 
         row.addView(
@@ -449,7 +469,7 @@ class DashClusterAdapter internal constructor()
         row.addView(Table.subCell(context, Utils.formatIntToString(variance), Gravity.END,
             textColor))
 
-        val imgUba=Table.icon(context, R.drawable.ic_open)
+        val imgUba=Table.icon(context)
         row.addView(imgUba)
 
         if (variance<0) {
@@ -463,7 +483,7 @@ class DashClusterAdapter internal constructor()
 
         var strOrderPercent="-"
         if (orderedPercent>0)  strOrderPercent=Utils.formatDoubleToString(orderedPercent) + " %"
-        row.addView(Table.cell(context, strOrderPercent, Gravity.END,textColor))
+        row.addView(Table.subCell(context, strOrderPercent, Gravity.END,textColor))
 
         row.addView(
             Table.subCell(context, Utils.formatDoubleToString(lastYearVolume,0),

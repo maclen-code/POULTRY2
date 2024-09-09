@@ -7,6 +7,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.poultry2.ui.dashboard.global.ar.arInvoice.ArInvoiceActivity
 import com.example.poultry2.R
@@ -88,7 +89,7 @@ class ArAccountActivity : AppCompatActivity() {
 
             val arVm =
                 ViewModelProvider(this@ArAccountActivity)[ArViewModel::class.java]
-            val listAccountArSummary=arVm.acctArSummary(Filter.cid,Filter.sno,clusterId,tradeCode,
+            val listAccountArSummary=arVm.acctArSummary(Filter.cid,clusterId,tradeCode,
                 rid,balanceType)
 
 
@@ -103,18 +104,21 @@ class ArAccountActivity : AppCompatActivity() {
     private fun showAccountAr(listAccountArSummary:List<Data.AcctArSummary>){
 
         Table.createHeader(
-            "", listOf("NO","ACCOUNT", "CURRENT","1 - 15", "16 - 30",
-                "ABOVE 30", "TOTAL",""
+            "", listOf("NO","ACCOUNT", "CURRENT","1 - 15 DAYS", "16 - 30 DAYS",
+                "ABOVE 30 DAYS","OVER 90 DAYS", "TOTAL",""
             ), binding.table2
         )
 
         val context=binding.table2.context
         val size=14f
-        val textColor=context.resolveColorAttr(android.R.attr.textColorSecondary)
+
         val typeFace=Typeface.NORMAL
         var ctr=1
         listAccountArSummary.sortedByDescending { it.total }.forEach { item->
+            var textColor=context.resolveColorAttr(android.R.attr.textColorSecondary)
 
+            if (item.a2>0 || item.a3>0 || item.a4>0)
+                textColor= ContextCompat.getColor(context, R.color.textWarning)
 
             val row = TableRow(context)
 
@@ -136,10 +140,13 @@ class ArAccountActivity : AppCompatActivity() {
             row.addView(Table.cell(context, Utils.formatDoubleToString(item.a4,0),
                 Gravity.END,textColor,false,1,typeFace,size))
 
+            row.addView(Table.cell(context, Utils.formatDoubleToString(item.a5,0),
+                Gravity.END,textColor,false,1,typeFace,size))
+
             row.addView(Table.cell(context, Utils.formatDoubleToString(item.total,0),
                 Gravity.END,textColor,false,1,Typeface.BOLD,size))
 
-            val img=Table.icon(context, R.drawable.ic_open)
+            val img=Table.icon(context)
             row.addView(img)
 
             img.setOnClickListener {

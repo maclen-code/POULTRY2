@@ -1,6 +1,7 @@
 package com.example.poultry2.ui.dashboard.global.uba.notOrdered
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -8,9 +9,12 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.poultry2.R
 import com.example.poultry2.data.Data
 import com.example.poultry2.data.sov.SovViewModel
+import com.example.poultry2.data.sovSmis.SovSmisViewModel
 import com.example.poultry2.databinding.ActivityNotOrderedBinding
+import com.example.poultry2.ui.dashboard.global.acct.acctDashboard.AccountDashboardActivity
 import com.example.poultry2.ui.function.MyDate.toDateString
 import com.example.poultry2.ui.function.MyDate.toLocalDate
 import com.example.poultry2.ui.function.Table
@@ -36,6 +40,8 @@ class NotOrderedActivity : AppCompatActivity() {
     private var catId=""
     private var category=""
     private var itemCode=""
+    private var itemDesc=""
+    private var productType=""
 
     private val map = mutableMapOf<String, String>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +79,12 @@ class NotOrderedActivity : AppCompatActivity() {
         if (intent.hasExtra("itemCode")) itemCode=intent.getStringExtra("itemCode")
             .toString()
 
+        if (intent.hasExtra("itemDesc")) itemDesc=intent.getStringExtra("itemDesc")
+            .toString()
+
+        if (intent.hasExtra("productType")) productType=intent.getStringExtra("productType")
+            .toString()
+
         if (cluster!="") map["cluster"]=cluster
         if (tradeCode!="") map["trade Code"]=tradeCode
         if (dsp!="") map["dsp"]=dsp
@@ -80,6 +92,7 @@ class NotOrderedActivity : AppCompatActivity() {
         if (bunit!="") map["bunit"]=bunit
         if (category!="") map["category"]=category
         if (itemCode!="") map["itemCode"]=itemCode
+        if (itemDesc!="") map["item Desc"]=itemDesc
         map["date from"]=Filter.dates.from
         map["date to"]=Filter.dates.to
         show()
@@ -99,18 +112,21 @@ class NotOrderedActivity : AppCompatActivity() {
         val scopeIO = CoroutineScope(job + Dispatchers.IO)
         scopeIO.launch {
 
-            println("clusterId $clusterId")
-            println("tradeCode $tradeCode")
-            println("rid $rid")
-            println("channel $channel")
-            println("catId $catId")
-
             val vm =
                 ViewModelProvider(this@NotOrderedActivity)[SovViewModel::class.java]
-            val list=vm.sovNotOrdered(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to,
-                Filter.dates.universeFrom,Filter.transType,clusterId,tradeCode,rid, channel,
-                bunitId, catId,itemCode,)
+            val vmSmis =
+                ViewModelProvider(this@NotOrderedActivity)[SovSmisViewModel::class.java]
+
+            val list: List<Data.NotOrdered> = if (productType=="" || productType=="P")
+                vm.sovNotOrdered(
+                    Filter.cid, Filter.dates.from, Filter.dates.to,
+                    Filter.dates.universeFrom,Filter.transType,clusterId,tradeCode,rid, channel,
+                    bunitId, catId,itemCode)
+            else
+                vmSmis.sovSmisNotOrdered(
+                    Filter.cid, Filter.dates.from, Filter.dates.to,
+                    Filter.dates.universeFrom,Filter.transType,clusterId,rid, channel,
+                    bunitId)
 
             scopeMainThread.launch {
 
@@ -145,6 +161,7 @@ class NotOrderedActivity : AppCompatActivity() {
             val lastOrdered= item.lastOrdered.toLocalDate().toDateString("MMM dd, yyyy")
 
             row.addView(Table.cell(context, lastOrdered, Gravity.START))
+
 
             ctr++
             table.addView(row)

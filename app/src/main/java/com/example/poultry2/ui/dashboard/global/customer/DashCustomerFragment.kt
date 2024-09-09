@@ -2,6 +2,7 @@ package com.example.poultry2.ui.dashboard.global.customer
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 
 import android.os.Bundle
 import android.text.Editable
@@ -19,6 +20,7 @@ import com.example.poultry2.data.Data
 import com.example.poultry2.data.ar.ArViewModel
 import com.example.poultry2.data.sov.SovViewModel
 import com.example.poultry2.databinding.FragmentDashCustomerBinding
+import com.example.poultry2.ui.dashboard.global.customer.customerDashboard.CustomerDashboardActivity
 import com.example.poultry2.ui.global.filter.Filter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -97,13 +99,13 @@ class DashCustomerFragment : Fragment(){
 
 
             val listSovCustomer=vm.sovCustomer(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.transType,
+                Filter.cid, Filter.dates.from, Filter.dates.to, Filter.transType,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
                 Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,clusterId,tradeCode,rid)
 
             val arVm =
                 ViewModelProvider(this@DashCustomerFragment)[ArViewModel::class.java]
-            val listCustomerArSummary=arVm.customerArSummary(Filter.cid,Filter.sno,
+            val listCustomerArSummary=arVm.customerArSummary(Filter.cid,
                 clusterId,tradeCode,rid,"","")
 
 //            if (Filter.dates.from!= LocalDate.now().monthFirstDate()
@@ -141,10 +143,10 @@ class DashCustomerFragment : Fragment(){
             scopeMainThread.launch {
                 adapter.setData(listDashCustomer)
                 adapter.onItemClick = {
-//                  val intent = Intent(activity, CustomerDashboardActivity::class.java)
-//                  intent.putExtra("customerNo", it.customerNo)
-//                  intent.putExtra("customer", it.customer)
-//                  startActivity(intent)
+                  val intent = Intent(activity, CustomerDashboardActivity::class.java)
+                  intent.putExtra("customerNo", it.customerNo)
+                  intent.putExtra("customer", it.customer)
+                  startActivity(intent)
                 }
                 binding.progress.visibility=View.GONE
             }

@@ -8,13 +8,11 @@ import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 
-@Entity(tableName = "ar", [Index(value = ["cid","rid", "acctNo","supervisor","channel"])])
+@Entity(tableName = "ar", [Index(value = ["cid","rid", "acctNo","channel"])])
 @Parcelize
 data class Ar(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo(name = "cid") var cid: String,
-    @ColumnInfo(name = "sno") var sno: String,
-    @ColumnInfo(name = "supervisor") var supervisor: String,
     @ColumnInfo(name = "tradeCode") var tradeCode: String,
     @ColumnInfo(name = "tradeType") var tradeType: String,
     @ColumnInfo(name = "clusterId") var clusterId: Int,
@@ -25,9 +23,6 @@ data class Ar(
     @ColumnInfo(name = "customer") var customer: String,
     @ColumnInfo(name = "acctNo") var acctNo: String,
     @ColumnInfo(name = "storeName") var storeName: String,
-    @ColumnInfo(name = "address") var address: String,
-    @ColumnInfo(name = "barangay") var barangay: String,
-    @ColumnInfo(name = "city") var city: String,
     @ColumnInfo(name = "channel") var channel: String,
     @ColumnInfo(name = "date") var date: String,
     @ColumnInfo(name = "invoiceNo") var invoiceNo: String,

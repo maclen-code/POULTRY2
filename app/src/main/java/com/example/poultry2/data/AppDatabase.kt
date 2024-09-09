@@ -13,6 +13,8 @@ import com.example.poultry2.data.ar.Ar
 import com.example.poultry2.data.ar.ArDao
 import com.example.poultry2.data.dspTarget.DspTarget
 import com.example.poultry2.data.dspTarget.DspTargetDao
+import com.example.poultry2.data.inventory.Inventory
+import com.example.poultry2.data.inventory.InventoryDao
 import com.example.poultry2.data.resetDbase.ResetDbaseDao
 import com.example.poultry2.data.siv.Siv
 import com.example.poultry2.data.siv.SivDao
@@ -22,33 +24,39 @@ import com.example.poultry2.data.sov.Sov
 import com.example.poultry2.data.sov.SovDao
 import com.example.poultry2.data.sovPromoDisc.SovPromoDisc
 import com.example.poultry2.data.sovPromoDisc.SovPromoDiscDao
+import com.example.poultry2.data.sovSmis.SovSmis
+import com.example.poultry2.data.sovSmis.SovSmisDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(entities = [
     Siv::class,
     Sov::class,
+    SovSmis::class,
     Address::class,
     SivTarget::class,
     DspTarget::class,
     SovPromoDisc::class,
     Ar::class,
-    AccountTarget::class
+    AccountTarget::class,
+    Inventory::class
 
 
-], version = 18, exportSchema = false)
+], version = 31, exportSchema = false)
 
 
 abstract class AppDatabase : RoomDatabase() {
     abstract fun resetDbaseDao():ResetDbaseDao
     abstract fun sivDao():SivDao
     abstract fun sovDao(): SovDao
+    abstract fun sovSmisDao(): SovSmisDao
     abstract fun addressDao(): AddressDao
     abstract fun sivTargetDao():SivTargetDao
     abstract fun dspTargetDao():DspTargetDao
     abstract fun sovPromoDiscDao():SovPromoDiscDao
     abstract fun arDao():ArDao
     abstract fun accountTargetDao():AccountTargetDao
+    abstract fun inventoryDao():InventoryDao
 
     private class DatabaseCallback(
         private val scope: CoroutineScope

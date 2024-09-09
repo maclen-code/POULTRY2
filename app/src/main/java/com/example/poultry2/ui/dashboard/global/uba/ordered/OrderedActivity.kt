@@ -1,6 +1,7 @@
 package com.example.poultry2.ui.dashboard.global.uba.ordered
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
@@ -9,9 +10,12 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.example.poultry2.R
 import com.example.poultry2.data.Data
 import com.example.poultry2.data.sov.SovViewModel
+import com.example.poultry2.data.sovSmis.SovSmisViewModel
 import com.example.poultry2.databinding.ActivityOrderedBinding
+import com.example.poultry2.ui.dashboard.global.acct.acctDashboard.AccountDashboardActivity
 import com.example.poultry2.ui.function.Table
 import com.example.poultry2.ui.function.Theme.resolveColorAttr
 import com.example.poultry2.ui.function.Utils
@@ -35,6 +39,8 @@ class OrderedActivity : AppCompatActivity() {
     private var catId=""
     private var category=""
     private var itemCode=""
+    private var itemDesc=""
+    private var productType=""
 
 
     private val map = mutableMapOf<String, String>()
@@ -63,13 +69,16 @@ class OrderedActivity : AppCompatActivity() {
             .toString()
         if (intent.hasExtra("bunit")) bunit=intent.getStringExtra("bunit")
             .toString()
-        if (intent.hasExtra("itemCode")) itemCode=intent.getStringExtra("itemCode")
-            .toString()
         if (intent.hasExtra("catId")) catId=intent.getStringExtra("catId")
             .toString()
         if (intent.hasExtra("category")) category=intent.getStringExtra("category")
             .toString()
-
+        if (intent.hasExtra("itemCode")) itemCode=intent.getStringExtra("itemCode")
+            .toString()
+        if (intent.hasExtra("itemDesc")) itemDesc=intent.getStringExtra("itemDesc")
+            .toString()
+        if (intent.hasExtra("productType")) productType=intent.getStringExtra("productType")
+            .toString()
 
         if (cluster!="") map["cluster"]=cluster
         if (tradeCode!="") map["trade Code"]=tradeCode
@@ -77,6 +86,7 @@ class OrderedActivity : AppCompatActivity() {
         if (channel!="") map["channel"]=channel
         if (category!="") map["category"]=category
         if (itemCode!="") map["item code"]=itemCode
+        if (itemDesc!="") map["item Desc"]=itemDesc
         map["date from"]=Filter.dates.from
         map["date to"]=Filter.dates.to
 
@@ -98,16 +108,23 @@ class OrderedActivity : AppCompatActivity() {
         scopeIO.launch {
             val vm =
                 ViewModelProvider(this@OrderedActivity)[SovViewModel::class.java]
+            val vmSmis =
+                ViewModelProvider(this@OrderedActivity)[SovSmisViewModel::class.java]
 
-            val list=vm.sovOrdered(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.transType,
-                clusterId,tradeCode,rid,channel,bunitId,catId,itemCode)
+            val list: List<Data.Ordered> = if (productType=="" || productType=="P")
+                vm.sovOrdered(
+                    Filter.cid, Filter.dates.from, Filter.dates.to, Filter.transType,
+                    clusterId,tradeCode,rid,channel,bunitId,catId,itemCode)
+            else
+                vmSmis.sovSmisOrdered(
+                    Filter.cid, Filter.dates.from, Filter.dates.to, Filter.transType,
+                    clusterId,rid,channel,bunitId)
 
             scopeMainThread.launch {
 
                 Table.showFilter(map,binding.table1)
 
-                val headers= mutableListOf("NO","ACCOUNT","DSP","CHANNEL","VOLUME","AMOUNT")
+                val headers= mutableListOf("NO","ACCOUNT","DSP","CHANNEL","VOLUME","AMOUNT","")
                 Table.createHeader("",headers,binding.table2)
 
                 table2(binding.table2,list)
@@ -135,6 +152,15 @@ class OrderedActivity : AppCompatActivity() {
             row.addView(Table.cell(context,  Utils.formatDoubleToString(item.volume), Gravity.END))
 
             row.addView(Table.cell(context,  Utils.formatDoubleToString(item.totalNet), Gravity.END))
+
+            val imgAcct=Table.icon(context)
+            row.addView(imgAcct)
+            imgAcct.setOnClickListener {
+                val intent = Intent(this, AccountDashboardActivity::class.java)
+                intent.putExtra("acctNo", item.acctNo)
+                intent.putExtra("storeName", item.storeName)
+                startActivity(intent)
+            }
             ctr++
 
         }
@@ -149,15 +175,14 @@ class OrderedActivity : AppCompatActivity() {
         val row = TableRow(context)
         table.addView(row)
 
-        row.addView(Table.cell(context,"TOTAL", Gravity.END,
+        row.addView(Table.subCell(context,"TOTAL", Gravity.END,
             textColor,true,4))
 
-        row.addView(Table.cell(context, Utils.formatDoubleToString(volume), Gravity.END,
-            textColor,false,1,Typeface.BOLD))
+        row.addView(Table.subCell(context, Utils.formatDoubleToString(volume), Gravity.END))
 
-        row.addView(Table.cell(context, Utils.formatDoubleToString(amount), Gravity.END,
-            textColor,false,1,Typeface.BOLD))
+        row.addView(Table.subCell(context, Utils.formatDoubleToString(amount), Gravity.END))
 
+        row.addView(Table.subCell(context, ""))
     }
 
 }

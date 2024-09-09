@@ -21,6 +21,7 @@ import com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterDsp.Das
 import com.example.poultry2.ui.dashboard.cluster.tradeDashboard.tradeCategory.DashTradeCategoryFragment
 import com.example.poultry2.ui.dashboard.cluster.tradeDashboard.tradeChannel.DashTradeChannelFragment
 import com.example.poultry2.ui.dashboard.cluster.tradeDashboard.tradeDsp.DashTradeDspFragment
+import com.example.poultry2.ui.dashboard.global.product.DashProductFragment
 import com.example.poultry2.ui.function.Theme
 import com.example.poultry2.ui.function.Theme.resolveColorAttr
 import com.example.poultry2.ui.function.Utils
@@ -115,7 +116,7 @@ class TradeDashboardActivity : AppCompatActivity()  {
     }
 
     private fun setTabs(){
-        val tabHeader= arrayOf("dsp","category","channel","customer","account","ar")
+        val tabHeader= arrayOf("dsp","category","product","channel","customer","account","ar")
         tabHeader.forEach {
             val tab: TabLayout.Tab = binding.tabs.newTab()
             tab.text = it
@@ -150,6 +151,7 @@ class TradeDashboardActivity : AppCompatActivity()  {
                 "dsp" -> fragment = DashTradeDspFragment()
                 "channel" -> fragment = DashTradeChannelFragment()
                 "category" -> fragment = DashTradeCategoryFragment()
+                "product" -> fragment = DashProductFragment()
                 "customer" -> fragment = DashCustomerFragment()
                 "account" -> fragment = DashAcctFragment()
                 "ar" -> fragment = DashArFragment()

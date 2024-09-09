@@ -53,7 +53,7 @@ class DashCustomerAdapter internal constructor()
                 Table.createHeader(
                     "", listOf(
                         "BALANCE TYPE", "CURRENT",
-                        "1 - 15", "16 - 30", "ABOVE 30", "TOTAL"
+                        "1 - 15 DAYS", "16 - 30 DAYS", "ABOVE 30 DAYS", "OVER 90 DAYS","TOTAL"
                     ), binding.table2
                 )
 
@@ -122,6 +122,9 @@ class DashCustomerAdapter internal constructor()
                 Gravity.END))
 
             row.addView(Table.cell(context, Utils.formatDoubleToString(item.a4,0),
+                Gravity.END))
+
+            row.addView(Table.cell(context, Utils.formatDoubleToString(item.a5,0),
                 Gravity.END))
 
             row.addView(Table.cell(context, Utils.formatDoubleToString(item.total,0),

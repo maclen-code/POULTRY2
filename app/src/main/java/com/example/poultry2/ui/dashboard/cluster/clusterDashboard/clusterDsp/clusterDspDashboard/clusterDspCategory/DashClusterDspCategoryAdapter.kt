@@ -97,7 +97,7 @@ class DashClusterDspCategoryAdapter internal constructor()
                         Utils.formatDoubleToString(item.totalNet,0),
                         Gravity.END,textColor))
 
-                    val imgVolume=Table.icon(context, R.drawable.ic_open)
+                    val imgVolume=Table.icon(context)
                     row.addView(imgVolume)
 
                     if (item.volume>0) {
@@ -122,7 +122,7 @@ class DashClusterDspCategoryAdapter internal constructor()
                     row.addView(Table.cell(context, Utils.formatIntToString(variance),
                         Gravity.END,textColor))
 
-                    val imgUba=Table.icon(context, R.drawable.ic_open)
+                    val imgUba=Table.icon(context)
                     row.addView(imgUba)
 
                     if (variance<0) {
@@ -196,7 +196,7 @@ class DashClusterDspCategoryAdapter internal constructor()
         row.addView(Table.subCell(context, Utils.formatDoubleToString(totalNet,0),
             Gravity.END,textColor))
 
-        val imgVolume=Table.icon(context, R.drawable.ic_open)
+        val imgVolume=Table.icon(context)
         row.addView(imgVolume)
 
         if (volume!=0.0) {
@@ -224,7 +224,7 @@ class DashClusterDspCategoryAdapter internal constructor()
         row.addView(Table.subCell(context, Utils.formatIntToString(variance), Gravity.END,
             textColor))
 
-        val imgUba=Table.icon(context, R.drawable.ic_open)
+        val imgUba=Table.icon(context)
         row.addView(imgUba)
 
         if (variance<0) {
@@ -239,7 +239,7 @@ class DashClusterDspCategoryAdapter internal constructor()
 
         var strOrderPercent="-"
         if (orderedPercent>0)  strOrderPercent=Utils.formatDoubleToString(orderedPercent) + " %"
-        row.addView(Table.cell(context, strOrderPercent, Gravity.END,textColor))
+        row.addView(Table.subCell(context, strOrderPercent, Gravity.END,textColor))
 
         row.addView(
             Table.subCell(context, Utils.formatDoubleToString(lastYearVolume,0),
@@ -295,7 +295,7 @@ class DashClusterDspCategoryAdapter internal constructor()
         row.addView(Table.subCell(context, Utils.formatDoubleToString(totalNet,0),
             Gravity.END,textColor))
 
-        val imgVolume=Table.icon(context, R.drawable.ic_open)
+        val imgVolume=Table.icon(context)
         row.addView(imgVolume)
 
         if (volume!=0.0) {
@@ -322,7 +322,7 @@ class DashClusterDspCategoryAdapter internal constructor()
         row.addView(Table.subCell(context, Utils.formatIntToString(variance), Gravity.END,
             textColor))
 
-        val imgUba=Table.icon(context, R.drawable.ic_open)
+        val imgUba=Table.icon(context)
         row.addView(imgUba)
 
         if (variance<0) {
@@ -336,7 +336,7 @@ class DashClusterDspCategoryAdapter internal constructor()
 
         var strOrderPercent="-"
         if (orderedPercent>0)  strOrderPercent=Utils.formatDoubleToString(orderedPercent) + " %"
-        row.addView(Table.cell(context, strOrderPercent, Gravity.END,textColor))
+        row.addView(Table.subCell(context, strOrderPercent, Gravity.END,textColor))
 
         row.addView(
             Table.subCell(context, Utils.formatDoubleToString(lastYearVolume,0),

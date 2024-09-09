@@ -11,20 +11,12 @@
             android:icon="@drawable/ic_dashboard"
             android:title="@string/nav_dashboard" />
 
-        <item
-            android:id="@+id/nav_download_data"
-            android:icon="@drawable/ic_download_black"
-            android:title="@string/nav_download_data" />
 
         <item
             android:id="@+id/nav_sync"
             android:icon="@drawable/ic_sync"
             android:title="@string/nav_sync" />
 
-        <item
-            android:id="@+id/nav_downloadMap"
-            android:icon="@drawable/ic_map"
-            android:title="@string/nav_downloadMap" />
 
         <item
             android:id="@+id/nav_setting"

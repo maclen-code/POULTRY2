@@ -13,19 +13,19 @@ class ArRepository(private val arDao: ArDao) {
         arDao.deleteAll(cid)
     }
 
-    fun customerArSummary(cid:String,sno:String,clusterId:Int,tradeCode:String,rid:String,
+    fun customerArSummary(cid:String,clusterId:Int,tradeCode:String,rid:String,
                           customerNo:String,balanceType:String):List<Data.CustomerArSummary>{
-        return arDao.customerArSummary(cid,sno,clusterId,tradeCode,rid,customerNo,balanceType)
+        return arDao.customerArSummary(cid,clusterId,tradeCode,rid,customerNo,balanceType)
     }
 
-    fun acctArSummary(cid:String,sno:String,clusterId:Int,tradeCode: String,rid:String,
+    fun acctArSummary(cid:String,clusterId:Int,tradeCode: String,rid:String,
                              balanceType:String):List<Data.AcctArSummary>{
-        return arDao.acctArSummary(cid,sno,clusterId,tradeCode,rid,balanceType)
+        return arDao.acctArSummary(cid,clusterId,tradeCode,rid,balanceType)
     }
 
-    fun arSummary(cid:String,sno:String,clusterId: Int,tradeCode: String,rid:String,
+    fun arSummary(cid:String,clusterId: Int,tradeCode: String,rid:String,
                   customerNo:String,channel:String,balanceType:String):List<Data.ArSummary>{
-        return arDao.arSummary(cid,sno,clusterId,tradeCode,rid,customerNo,channel,balanceType)
+        return arDao.arSummary(cid,clusterId,tradeCode,rid,customerNo,channel,balanceType)
     }
 
 

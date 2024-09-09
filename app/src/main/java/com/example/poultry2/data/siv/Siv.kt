@@ -21,9 +21,6 @@ data class Siv(
     @ColumnInfo(name = "clusterId") var clusterId: Int,
     @ColumnInfo(name = "cluster") var cluster: String,
     @ColumnInfo(name = "date") var date: String,
-    @ColumnInfo(name = "sno") var sno: String,
-    @ColumnInfo(name = "supervisor") var supervisor: String,
-    @ColumnInfo(name = "invoiceNo") var invoiceNo: String,
     @ColumnInfo(name = "itemId") var itemId: String,
     @ColumnInfo(name = "itemCode") var itemCode: String,
     @ColumnInfo(name = "itemDesc") var itemDesc: String,
@@ -31,8 +28,6 @@ data class Siv(
     @ColumnInfo(name = "bunit") var bunit: String,
     @ColumnInfo(name = "catId") var catId: String,
     @ColumnInfo(name = "category") var category: String,
-    @ColumnInfo(name = "qty") var  qty: Int,
-    @ColumnInfo(name = "retailUnit") var retailUnit: String,
     @ColumnInfo(name = "volume") var  volume: Double,
     @ColumnInfo(name = "volumeUnit") var volumeUnit: String,
     @ColumnInfo(name = "totalNet") var  totalNet: Double

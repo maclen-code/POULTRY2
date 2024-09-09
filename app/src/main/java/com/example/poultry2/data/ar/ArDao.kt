@@ -14,10 +14,11 @@ interface ArDao {
     fun deleteAll(cid:String)
 
     @Query("Select x.customerNo,x.customer,balanceType," +
-            "sum(case when agingId= -9999 then balance else 0 end) as a1, " +
-            "sum(case when agingId = 1 then balance else 0 end) as a2, " +
-            "sum(case when agingId = 16 then balance else 0 end) as a3, " +
-            "sum(case when agingId >= 31 then balance else 0 end) as a4," +
+            "sum(case when daysDue <1 then balance else 0 end) as a1, " +
+            "sum(case when daysDue >0 and daysDue<16 then balance else 0 end) as a2, " +
+            "sum(case when daysDue >15 and daysDue<31 then balance else 0 end) as a3, " +
+            "sum(case when agingId >30  and daysDue<91 then balance else 0 end) as a4," +
+            "sum(case when agingId >90  then balance else 0 end) as a5," +
             "sum(balance) as total " +
             "FROM ar x " +
 
@@ -25,7 +26,7 @@ interface ArDao {
             "( " +
             "Select customerNo,count(distinct acctNo) branchCount " +
             "from sov " +
-            "where cid=:cid and (:sno like '%' || sno || '%'  or :sno='') " +
+            "where cid=:cid " +
             "and (customerNo=:customerNo  or :customerNo='') " +
             "and (clusterId=:clusterId  or :clusterId=-1) " +
             "and (tradeCode=:tradeCode  or :tradeCode='') " +
@@ -34,7 +35,7 @@ interface ArDao {
             ") bc on bc.customerNo=x.customerNo  " +
 
             "where cid=:cid " +
-            "and (:sno like '%' || sno || '%'  or :sno='') " +
+
             "and (x.customerNo=:customerNo  or :customerNo='') " +
             "and (balanceType=:balanceType or :balanceType='') " +
             "and bc.branchCount>1 " +
@@ -42,36 +43,36 @@ interface ArDao {
             "and (tradeCode=:tradeCode  or :tradeCode='') " +
             "and (rid=:rid  or :rid='') " +
             "group by x.customerNo,x.customer,x.balanceType ")
-    fun customerArSummary(cid:String,sno:String,clusterId:Int,tradeCode:String,rid:String,
+    fun customerArSummary(cid:String,clusterId:Int,tradeCode:String,rid:String,
                           customerNo:String,balanceType:String):List<Data.CustomerArSummary>
 
 
     @Query("Select acctNo,storeName,balanceType," +
-            "sum(case when agingId= -9999 then balance else 0 end) as a1, " +
-            "sum(case when agingId = 1 then balance else 0 end) as a2, " +
-            "sum(case when agingId = 16 then balance else 0 end) as a3, " +
-            "sum(case when agingId >= 31 then balance else 0 end) as a4," +
+            "sum(case when daysDue <1 then balance else 0 end) as a1, " +
+            "sum(case when daysDue >0 and daysDue<16 then balance else 0 end) as a2, " +
+            "sum(case when daysDue >15 and daysDue<31 then balance else 0 end) as a3, " +
+            "sum(case when agingId >30  and daysDue<91 then balance else 0 end) as a4," +
+            "sum(case when agingId >90  then balance else 0 end) as a5," +
             "sum(balance) as total " +
             "FROM ar x " +
             "where cid=:cid " +
-            "and (:sno like '%' || sno || '%'  or :sno='') " +
             "and (clusterId=:clusterId  or :clusterId=-1) " +
             "and (tradeCode=:tradeCode  or :tradeCode='') " +
             "and (rid=:rid  or :rid='') " +
             "and (balanceType=:balanceType or :balanceType='') " +
             "group by acctNo,storeName,x.balanceType")
-    fun acctArSummary(cid:String,sno:String,clusterId:Int,tradeCode: String,rid:String,
+    fun acctArSummary(cid:String,clusterId:Int,tradeCode: String,rid:String,
                              balanceType:String):List<Data.AcctArSummary>
 
     @Query("Select balanceType," +
-            "sum(case when agingId= -9999 then balance else 0 end) as a1, " +
-            "sum(case when agingId = 1 then balance else 0 end) as a2, " +
-            "sum(case when agingId = 16 then balance else 0 end) as a3, " +
-            "sum(case when agingId >= 31 then balance else 0 end) as a4," +
+            "sum(case when daysDue <1 then balance else 0 end) as a1, " +
+            "sum(case when daysDue >0 and daysDue<16 then balance else 0 end) as a2, " +
+            "sum(case when daysDue >15 and daysDue<31 then balance else 0 end) as a3, " +
+            "sum(case when agingId >30  and daysDue<91 then balance else 0 end) as a4," +
+            "sum(case when agingId >90  then balance else 0 end) as a5," +
             "sum(balance) as total " +
             "FROM ar x " +
             "where cid=:cid " +
-            "and (:sno like '%' || sno || '%'  or :sno='') " +
             "and (x.clusterId=:clusterId or :clusterId=-1) " +
             "and (x.tradeCode=:tradeCode or :tradeCode='') " +
             "and (rid=:rid  or :rid='') " +
@@ -79,7 +80,7 @@ interface ArDao {
             "and (acctNo=:acctNo  or :acctNo='') " +
             "and (customerNo=:customerNo  or :customerNo='') " +
             "group by x.balanceType")
-    fun arSummary(cid:String,sno:String,clusterId: Int,tradeCode: String,rid:String,channel:String,
+    fun arSummary(cid:String,clusterId: Int,tradeCode: String,rid:String,channel:String,
                   acctNo:String,customerNo:String):List<Data.ArSummary>
 
 

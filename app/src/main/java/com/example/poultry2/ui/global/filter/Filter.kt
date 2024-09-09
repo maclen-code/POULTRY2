@@ -21,12 +21,7 @@ object Filter {
     var updated=MutableLiveData<Boolean>()
 
     var listServer= mutableListOf<Data.Server>()
-//    var listServer=mutableListOf<Data.FilterServer>()
     var cid:String=""
-
-    var listSupervisor=mutableListOf<Data.FilterSupervisor>()
-    var sno:String=""
-
 
     var listTransType= mutableListOf<Data.FilterTransType>()
     var transType:String=""

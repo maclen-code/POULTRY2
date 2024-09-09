@@ -2,6 +2,7 @@ package com.example.poultry2.ui.dashboard.global.acct
 
 
 import android.annotation.SuppressLint
+import android.content.Intent
 
 import android.os.Bundle
 import android.text.Editable
@@ -19,6 +20,7 @@ import com.example.poultry2.data.Data
 import com.example.poultry2.data.ar.ArViewModel
 import com.example.poultry2.data.sov.SovViewModel
 import com.example.poultry2.databinding.FragmentDashCustomerBinding
+import com.example.poultry2.ui.dashboard.global.acct.acctDashboard.AccountDashboardActivity
 import com.example.poultry2.ui.global.filter.Filter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -100,13 +102,13 @@ class DashAcctFragment : Fragment(){
 
 
             val listSovAcct=vm.sovAcct(
-                Filter.cid,Filter.sno, Filter.dates.from, Filter.dates.to, Filter.transType,
+                Filter.cid ,Filter.dates.from, Filter.dates.to, Filter.transType,
                 Filter.dates.lastYearFrom,Filter.dates.lastYearTo,
-                Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,clusterId,tradeCode,rid)
+                Filter.dates.lastMonthFrom,Filter.dates.lastMonthTo,clusterId,tradeCode,rid,"")
 
             val arVm =
                 ViewModelProvider(this@DashAcctFragment)[ArViewModel::class.java]
-            val listAcctArSummary=arVm.acctArSummary(Filter.cid,Filter.sno,
+            val listAcctArSummary=arVm.acctArSummary(Filter.cid,
                 clusterId,tradeCode,rid,"")
 
 //            if (Filter.dates.from!= LocalDate.now().monthFirstDate()
@@ -144,10 +146,10 @@ class DashAcctFragment : Fragment(){
             scopeMainThread.launch {
                 adapter.setData(listDashAcct)
                 adapter.onItemClick = {
-//                  val intent = Intent(activity, CustomerDashboardActivity::class.java)
-//                  intent.putExtra("customerNo", it.customerNo)
-//                  intent.putExtra("customer", it.customer)
-//                  startActivity(intent)
+                  val intent = Intent(activity, AccountDashboardActivity::class.java)
+                  intent.putExtra("acctNo", it.acctNo)
+                    intent.putExtra("storeName", it.storeName)
+                  startActivity(intent)
                 }
                 binding.progress.visibility=View.GONE
             }

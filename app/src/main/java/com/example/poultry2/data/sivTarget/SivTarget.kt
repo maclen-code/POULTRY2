@@ -7,11 +7,10 @@ import androidx.room.Index
 import kotlinx.parcelize.Parcelize
 
 
-@Entity(tableName = "sivTarget",[Index(value = ["sno","cid","clusterId"])]
-    , primaryKeys =["sno","cid","clusterId","date"])
+@Entity(tableName = "sivTarget",[Index(value = ["cid","clusterId"])]
+    , primaryKeys =["cid","clusterId","date"])
 @Parcelize
 data class SivTarget(
-    @ColumnInfo(name = "sno") var sno: String,
     @ColumnInfo(name = "cid") var cid: String,
     @ColumnInfo(name = "clusterId") var clusterId: Int,
     @ColumnInfo(name = "date") var date: String,

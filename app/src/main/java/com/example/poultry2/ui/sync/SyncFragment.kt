@@ -2,6 +2,7 @@ package com.example.poultry2.ui.sync
 
 
 
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
@@ -43,6 +44,7 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 
 
+
 class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidationDialog.DialogListener{
 
     private var _binding: FragmentSyncBinding? = null
@@ -58,9 +60,18 @@ class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidati
 
         _binding = FragmentSyncBinding.inflate(inflater, container, false)
 
-        iniSelectServerAdapter()
+
         setupMenu()
 
+        binding.radioPeriod
+            .setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    R.id.rb_last_sync -> lastSync()
+                    R.id.rb_last_year -> initialSync()
+                    R.id.rb_period -> periodSync()
+                }
+            }
+        iniSelectServerAdapter()
         binding.btSync.setOnClickListener {
             if (Filter.listServer.isEmpty())
                 Toast.makeText(requireContext(),"server not found", Toast.LENGTH_SHORT).show()
@@ -85,36 +96,67 @@ class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidati
                 resultLauncher.launch(intent)
             }
         }
-
-        binding.rbLastSync.setOnClickListener {
-            val now = LocalDate.now()
-            val lsDate = selectedServer.lastSync.toLocalDate()
-            Sync.dateFrom=lsDate.toDateString()
-            Sync.dateTo=now.toDateString()
-            val period="${Sync.dateFrom} - ${Sync.dateTo}"
-            binding.tvPeriod.text=period
-            Sync.mode=1
-        }
-
-        binding.rbLastYear.setOnClickListener {
-            val now = LocalDate.now()
-            Sync.dateFrom = now.minusMonths(12).monthFirstDate()
-            Sync.dateTo = now.monthLastDate()
-            val period="${Sync.dateFrom} - ${Sync.dateTo}"
-            binding.tvPeriod.text=period
-            Sync.mode=2
-        }
-
-        binding.rbPeriod.setOnClickListener {
-            val selectPeriodDialog= SelectPeriodDialog()
-            val args = Bundle()
-            args.putString("source", "fragment")
-            selectPeriodDialog.arguments = args
-            selectPeriodDialog.show(
-                childFragmentManager, "selectPeriod")
-        }
-
         return binding.root
+    }
+
+   private fun lastSync() {
+        Sync.mode=1
+        val now = LocalDate.now()
+        val lsDate = selectedServer.lastSync.toLocalDate()
+        val period="$lsDate - $now"
+        binding.tvPeriod.text=period
+
+        Sync.listPeriod.clear()
+        Sync.listPeriod.add(
+            Data.SyncPeriod(lsDate,now,now.dayOfMonth
+                , siv = true, sov = true)
+        )
+    }
+
+   private fun initialSync(){
+        Sync.mode=2
+        var months=1L
+        val now = LocalDate.now()
+        var from=now.monthFirstDate().toLocalDate().minusMonths(months)
+        var to=now.monthLastDate().toLocalDate()
+        val period="$from - $to"
+        binding.tvPeriod.text=period
+        Sync.listPeriod.clear()
+        val start=from.minusMonths(1)
+        val end= from.minusMonths(1).monthLastDate().toLocalDate()
+        Sync.listPeriod.add(
+           Data.SyncPeriod(start,end,
+               end.dayOfMonth,
+               siv = false, sov = true)
+        )
+        while (months>=0) {
+            to=from.monthLastDate().toLocalDate()
+            if (to>LocalDate.now()) to=LocalDate.now()
+            Sync.listPeriod.add(
+                Data.SyncPeriod(from,to, to.dayOfMonth,
+                    siv = true, sov = true)
+            )
+
+            val lastYearFrom=from.minusYears(1)
+            val lastYearTo=lastYearFrom.monthLastDate().toLocalDate()
+            Sync.listPeriod.add(
+                Data.SyncPeriod(lastYearFrom,lastYearTo,
+                    lastYearTo.dayOfMonth,
+                    siv = false,sov = true)
+            )
+
+            from=to.plusDays(1)
+            months--
+        }
+   }
+
+    private fun periodSync(){
+        val selectPeriodDialog= SelectPeriodDialog()
+        val args = Bundle()
+        args.putString("source", "fragment")
+        selectPeriodDialog.arguments = args
+        selectPeriodDialog.show(
+            childFragmentManager, "selectPeriod")
     }
 
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -129,11 +171,11 @@ class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidati
         }
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
     private fun setupMenu() {
         (requireActivity() as MenuHost).addMenuProvider(object : MenuProvider {
             override fun onPrepareMenu(menu: Menu) {
@@ -158,7 +200,6 @@ class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidati
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
-
 
     private fun iniSelectServerAdapter(){
         val dropdownServerListAdapter= DropdownServerListAdapter(requireContext(), R.layout.item_dropdown)
@@ -190,8 +231,6 @@ class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidati
     }
 
     private fun updateStatus(){
-        binding.rbLastSync.isChecked=true
-        Sync.mode=1
         binding.rbLastSync.isEnabled=true
         binding.rbPeriod.isEnabled=true
         if (selectedServer.dbaseVersion!=dbaseVersion)  selectedServer.lastSync=""
@@ -211,28 +250,20 @@ class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidati
         }else {
             val now = LocalDate.now()
             if (selectedServer.lastSync.isNotEmpty()) {
-//                Sync.initial=false
-                Sync.mode=1
+                binding.rbLastSync.isChecked=true
                 val lsDate = selectedServer.lastSync.toLocalDate()
                 lastSync=lsDate.toDateString("MMM dd, yyyy")
-                Sync.dateFrom=lsDate.toDateString()
-                Sync.dateTo=now.toDateString()
                 if (now.toDateString()==lsDate.toDateString())  {
                     status="Updated"
                     statusColor= ContextCompat.getColor(requireContext(), R.color.green)
                 }else
                     status="Out of Sync"
             }else {
-                Sync.dateFrom = now.minusMonths(14).monthFirstDate()
-                Sync.dateTo = now.monthLastDate()
-                binding.rbLastYear.isChecked=true
-                Sync.mode=2
                 binding.rbLastSync.isEnabled=false
                 binding.rbPeriod.isEnabled=false
+                binding.rbLastYear.isChecked=true
             }
         }
-        val period="${Sync.dateFrom} - ${Sync.dateTo}"
-        binding.tvPeriod.text=period
         binding.tvStatus.text=status
         binding.tvStatus.setTextColor(statusColor)
         binding.tvLastSync.text=lastSync
@@ -240,12 +271,31 @@ class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidati
     }
 
     override fun onFinishSelectPeriodDialog(m: Int, y: Int) {
-        val date= LocalDate.of(y, m, 1)
-        Sync.dateFrom=date.minusMonths(2).toDateString()
-        Sync.dateTo=date.monthLastDate()
-        val period="${Sync.dateFrom} - ${Sync.dateTo}"
-        binding.tvPeriod.text=period
         Sync.mode=3
+        val date= LocalDate.of(y, m, 1)
+        val period="$date - ${date.monthLastDate()}"
+        binding.tvPeriod.text=period
+
+        Sync.listPeriod.clear()
+        val start=date.minusMonths(1)
+        val end= date.minusMonths(1).monthLastDate().toLocalDate()
+        Sync.listPeriod.add(
+            Data.SyncPeriod(start,end,end.dayOfMonth,siv = false, sov = true)
+        )
+
+        Sync.listPeriod.add(
+            Data.SyncPeriod(date,date.monthLastDate().toLocalDate(),
+                date.monthLastDate().toLocalDate().dayOfMonth,
+                siv = true, sov = true)
+        )
+
+            val lastYearFrom=date.minusYears(1)
+            val lastYearTo=lastYearFrom.monthLastDate().toLocalDate()
+            Sync.listPeriod.add(
+                Data.SyncPeriod(lastYearFrom,lastYearTo,
+                    lastYearTo.dayOfMonth,
+                    siv = false,sov = true)
+            )
     }
 
     private fun resetDbase(){
@@ -284,9 +334,20 @@ class SyncFragment : Fragment(), SelectPeriodDialog.DialogListener,AdminValidati
                 Filter.listServer.forEach {
                     it.lastSync=""
                 }
+
+                val gson = Gson()
+                val jsonString = gson.toJson(Filter.listServer)
+                val sh = requireContext().getSharedPreferences("servers", Context.MODE_PRIVATE)
+                if (sh != null) {
+                    with(sh.edit()) {
+                        putString("listServer", jsonString)
+                        apply()
+                    }
+                }
                 scopeMainThread.launch {
                     updateStatus()
                 }
+
             }
         }else
             Toast.makeText(requireContext(),"Invalid pin",Toast.LENGTH_SHORT).show()

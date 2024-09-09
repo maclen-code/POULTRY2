@@ -5,6 +5,11 @@
       <config />
     </shared>
     <layouts>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_account_dashboard.xml">
+        <config>
+          <theme>@style/Theme.bmeg</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ar_account.xml">
         <config>
           <theme>@style/Theme.bmeg</theme>
@@ -30,7 +35,17 @@
           <theme>@style/Theme.bmeg</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/activity_sync.xml">
+        <config>
+          <theme>@style/Theme.bmeg</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_menu.xml">
+        <config>
+          <theme>@style/Theme.bmeg</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/dialog_update_target.xml">
         <config>
           <theme>@style/Theme.bmeg</theme>
         </config>
@@ -50,7 +65,22 @@
           <theme>@style/Theme.bmeg</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_sales.xml">
+        <config>
+          <theme>@style/Theme.bmeg</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_sync.xml">
+        <config>
+          <theme>@style/Theme.bmeg</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_dash.xml">
+        <config>
+          <theme>@style/Theme.bmeg</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/item_sync.xml">
         <config>
           <theme>@style/Theme.bmeg</theme>
         </config>
@@ -77,156 +107,117 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0af32052-2381-4df2-acf9-516427e05fee" name="Changes" comment="UPDATE">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/accountTarget/AccountTarget.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/accountTarget/AccountTargetDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/accountTarget/AccountTargetRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/accountTarget/AccountTargetViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/Ar.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTarget.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTarget.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovPromoDisc/SovPromoDisc.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovPromoDisc/SovPromoDiscDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovPromoDisc/SovPromoDiscRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovPromoDisc/SovPromoDiscViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/DashboardFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/DashClusterAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/DashClusterFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/ClusterDashboardActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterCategory/DashClusterCategoryAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterCategory/DashClusterCategoryFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/DashClusterDspAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/DashClusterDspFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/ClusterDspDashboardActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspCategory/DashClusterDspCategoryAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspCategory/DashClusterDspCategoryFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspChannel/DashClusterDspChannelAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspChannel/DashClusterDspChannelFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterTrade/DashClusterTradeAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterTrade/DashClusterTradeFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/TradeDashboardActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeCategory/DashTradeCategoryAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeCategory/DashTradeCategoryFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeChannel/DashTradeChannelAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeChannel/DashTradeChannelFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeDsp/DashTradeDspAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeDsp/DashTradeDspFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/TradeDspDashboardActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspCategory/DashTradeDspCategoryFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspChannel/DashTradeDspChannelAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspChannel/DashTradeDspChannelFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/DashAcctAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/DashAcctFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/DashArAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/DashArFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/arAccount/ArAccountActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/arInvoice/ArInvoiceActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/arInvoice/ArInvoiceAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/customer/DashCustomerAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/customer/DashCustomerFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/product/DashProductAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/product/DashProductFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/uba/notOrdered/NotOrderedActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/uba/ordered/OrderedActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/sivSov/DashSivSovFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncActivity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_ar_account.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_ar_invoice.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_cluster_dashboard.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_customer_dashboard.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_not_ordered.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_ordered.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dash.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dash_customer.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_dash_siv_sov.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_ar_aging.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_ar_invoice.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_dash.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_siv_sov.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/inventory/Inventory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/inventory/InventoryDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/inventory/InventoryRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/inventory/InventoryViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovSmis/SovSmis.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovSmis/SovSmisDao.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovSmis/SovSmisRepository.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovSmis/SovSmisViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterSivSovCategory/DashClusterSivSovCategoryFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/acctDashboard/AccountDashboardActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/acctDashboard/invoice/InvoiceAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/acctDashboard/invoice/InvoiceFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/acctDashboard/summary/SalesFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/customer/customerDashboard/CustomerDashboardActivity.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/customer/customerDashboard/summary/CustomerSummaryFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/inventory/DashInventoryAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/inventory/DashInventoryFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/target/UpdateTargetDialog.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_open_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_open_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_open_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_account_dashboard.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_update_target.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sales.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/debug/app-debug.apk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/debug/debug.rar" beforeDir="false" afterPath="$PROJECT_DIR$/app/debug/debug.rar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/debug/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/debug/output-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/poultry/ExampleInstrumentedTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/poultry2/ExampleInstrumentedTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/AppDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/AppDatabase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/Data.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/Data.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/MSSQL.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/MSSQL.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/SharedPreference.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/SharedPreference.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/resetDbase/ResetDbaseDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/resetDbase/ResetDbaseDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/siv/Siv.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/Siv.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/siv/SivDao.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/siv/SivRepository.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/data/siv/SivViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/LocationPermissionHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/LocationPermissionHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/dashboard/DashboardFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/downloadMap/DownloadMapFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/downloadMap/DownloadMapFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/AESEncyption.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/AESEncyption.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/Access.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/Access.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/MyColor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/MyColor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/MyDate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/MyDate.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/MyImage.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/MyImage.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/MyMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/MyMap.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/MySharedPrep.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/MySharedPrep.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/Table.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/Table.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/Theme.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/function/Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/Utils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/AdminValidationDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/AdminValidationDialog.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/SelectPeriodDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/SelectPeriodDialog.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/SyncConnDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/SyncConnDialog.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/Filter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/Filter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/FilterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/FilterActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/period/FilterPeriodFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/period/FilterPeriodFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/server/FilterServerFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/server/FilterServerFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/server/FilterServerListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/server/FilterServerListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/supervisor/FilterSupervisorFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/supervisor/FilterSupervisorFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/supervisor/FilterSupervisorListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/supervisor/FilterSupervisorListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/transType/FilterTransTypeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/transType/FilterTransTypeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/filter/transType/FilterTransTypeListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/transType/FilterTransTypeListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/menu/MenuAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/menu/MenuAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/global/menu/MenuDialog.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/menu/MenuDialog.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/login/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/server/ServerEntryActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/server/ServerEntryActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/server/ServerFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/server/ServerFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/server/ServerListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/server/ServerListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/server/UserTypeListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/server/UserTypeListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/sync/DropdownServerListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/DropdownServerListAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/sync/Sync.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/Sync.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/sync/SyncActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/sync/SyncAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/sync/SyncFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry/ui/user/UserFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/user/UserFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_download_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_download_map.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_filter_server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_filter_server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_filter_supervisor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_filter_supervisor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_filter_trans_type.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_filter_trans_type.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/poultry/ExampleUnitTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/com/example/poultry2/ExampleUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/key/key.jks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/AppDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/AppDatabase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/Data.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/Data.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/Ar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/Ar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/ar/ArViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTarget.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTarget.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/dspTarget/DspTargetViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/Siv.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/Siv.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/siv/SivViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTarget.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTarget.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sivTarget/SivTargetViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovPromoDisc/SovPromoDisc.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/data/sovPromoDisc/SovPromoDisc.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/DashboardFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/DashboardFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/DashClusterAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/DashClusterAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/DashClusterFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/DashClusterFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/ClusterDashboardActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/ClusterDashboardActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterCategory/DashClusterCategoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterCategory/DashClusterCategoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterCategory/DashClusterCategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterCategory/DashClusterCategoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/DashClusterDspAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/DashClusterDspAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/DashClusterDspFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/DashClusterDspFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspCategory/DashClusterDspCategoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspCategory/DashClusterDspCategoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspCategory/DashClusterDspCategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspCategory/DashClusterDspCategoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspChannel/DashClusterDspChannelAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspChannel/DashClusterDspChannelAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspChannel/DashClusterDspChannelFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterDsp/clusterDspDashboard/clusterDspChannel/DashClusterDspChannelFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterTrade/DashClusterTradeAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterTrade/DashClusterTradeAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterTrade/DashClusterTradeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/clusterDashboard/clusterTrade/DashClusterTradeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/TradeDashboardActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/TradeDashboardActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeCategory/DashTradeCategoryAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeCategory/DashTradeCategoryAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeCategory/DashTradeCategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeCategory/DashTradeCategoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeChannel/DashTradeChannelAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeChannel/DashTradeChannelAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeChannel/DashTradeChannelFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeChannel/DashTradeChannelFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeDsp/DashTradeDspAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeDsp/DashTradeDspAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeDsp/DashTradeDspFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDashboard/tradeDsp/DashTradeDspFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/TradeDspDashboardActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/TradeDspDashboardActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspCategory/DashTradeDspCategoryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspCategory/DashTradeDspCategoryFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspChannel/DashTradeDspChannelAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspChannel/DashTradeDspChannelAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspChannel/DashTradeDspChannelFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/cluster/tradeDspDashboard/tradeDspChannel/DashTradeDspChannelFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/DashAcctAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/DashAcctAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/DashAcctFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/acct/DashAcctFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/DashArAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/DashArAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/DashArFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/DashArFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/arAccount/ArAccountActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/ar/arAccount/ArAccountActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/customer/DashCustomerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/customer/DashCustomerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/customer/DashCustomerFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/customer/DashCustomerFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/product/DashProductAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/product/DashProductAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/product/DashProductFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/product/DashProductFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/uba/notOrdered/NotOrderedActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/uba/notOrdered/NotOrderedActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/uba/ordered/OrderedActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/global/uba/ordered/OrderedActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/sivSov/DashSivSovFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/dashboard/sivSov/DashSivSovFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/MyDate.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/MyDate.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/Table.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/Table.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/Utils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/function/Utils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/Filter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/Filter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/FilterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/FilterActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/supervisor/FilterSupervisorFragment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/global/filter/supervisor/FilterSupervisorListAdapter.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/Sync.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/Sync.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/poultry2/ui/sync/SyncFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_sync.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_sync.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sync.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_sync.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_dash.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_dash.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_siv_sov.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_filter_target.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,6 +241,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/Google/AndroidStudio2024.1/device-explorer/HONOR HEY2-W09/_/data/data/com.example.poultry2/shared_prefs/servers.xml" root0="SKIP_INSPECTION" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -279,7 +273,7 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/CompanySystem/Mobile/POULTRY2/app/src/main/java/com/example/poultry2/ui/dashboard/global/dsp",
+    "last_opened_file_path": "D:/CompanySystem/Backup/Poultry2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "show.migrate.to.gradle.popup": "false"
   },
@@ -288,31 +282,34 @@
       "debug"
     ],
     "com.android.tools.idea.sqlite.queryhistory": [
-      "Select distinct storeName from sov\nwhere date>'2024-08-01'\nand tradeCode like '%LOWER SOUTH - REG%'\nAND channel='WHOLESALER'\nAND DSP='BONIFACIO'",
-      "Select distinct storeName from sov\nwhere date>'2024-08-01'\nand tradeCode like '%LOWER SOUTH - REG%'\nAND channel='WHOLESALER'",
-      "Select distinct storeName from sov\nwhere date>'2024-08-01'\nand tradeCode like '%LOWER SOUTH - REG%'",
-      "Select distinct storeName from sov\nwhere date>'2024-08-01'",
-      "Select * from sov\nwhere date>'2024-08-01'"
+      "delete from sov",
+      "select distinct strftime('%m%Y',date) date from  siv",
+      "select strftime('%m%Y',date) date from  sov",
+      "select distinct strftime('%m%Y',date) date from  sov",
+      "select distinct strftime('%m%Y',date) from  sov"
+    ],
+    "kotlin-gradle-user-dirs": [
+      "C:\\Users\\asus\\.gradle"
     ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\java\com\example\poultry2\ui\dashboard\global\dsp" />
-      <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\res\layout" />
-      <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\java\com\example\poultry2\ui\dashboard\global\ar" />
-      <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\java\com\example\poultry2\ui\dashboard\global\product" />
       <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\java\com\example\poultry2\data" />
+      <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\java\com\example\poultry2\ui\dashboard\global\customer\customerDashboard\summary" />
+      <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\res\layout" />
+      <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\java\com\example\poultry2\ui\dashboard\global\acct" />
+      <recent name="D:\CompanySystem\Mobile\POULTRY2\app\src\main\java\com\example\poultry2\ui\dashboard\global\dsp" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.example.poultry2" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterTrade.tradeDashboard.tradeDsp.tradeDspDashboard.tradeDspCategory" />
-      <recent name="com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterTrade.tradeDashboard.tradeDsp.tradeDspDashboard.tradeDspChannel" />
-      <recent name="com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterTrade.tradeDashboard.tradeDsp.tradeDspDashboard" />
-      <recent name="com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterDsp.clusterDspDashboard.clusterDspCategory" />
-      <recent name="com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterDsp.clusterDspDashboard.clusterDspChannel" />
+      <recent name="com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterSivSovCategory" />
+      <recent name="com.example.poultry2.ui.dashboard.inventory" />
+      <recent name="com.example.poultry2.ui.dashboard.global.customer.customerDashboard.summary" />
+      <recent name="com.example.poultry2.ui.dashboard.global.customer.customerDashboard" />
+      <recent name="com.example.poultry2.data.sovSmis" />
     </key>
   </component>
   <component name="RunManager">
@@ -331,7 +328,6 @@
       <option name="MODE" value="default_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
@@ -404,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722579035619</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="UPDATE">
+      <option name="closed" value="true" />
+      <created>1725018992280</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1725018992280</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

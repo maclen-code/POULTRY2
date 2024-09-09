@@ -43,11 +43,11 @@ class DashTradeDspChannelAdapter internal constructor()
         with (holder) {
             binding.tvNo.text=Utils.formatIntToString(position+1) + "."
 
-            val headers1=listOf("CHANNEL","VOLUME","AMOUNT","","ORDERED","UNIVERSE","VARIANCE","","%",
-                "LAST YEAR","GROWTH","LAST MONTH","GROWTH")
-            Table.createHeader(current.channel,headers1,binding.table1,true)
-
-            table1(binding.table1,current.listSovChannel)
+//            val headers1=listOf("CHANNEL","VOLUME","AMOUNT","","ORDERED","UNIVERSE","VARIANCE","","%",
+//                "LAST YEAR","GROWTH","LAST MONTH","GROWTH")
+//            Table.createHeader(current.channel,headers1,binding.table1,true)
+//
+//            table1(binding.table1,current.listSovChannel)
 
 
             val headers2=listOf("CATEGORY","VOLUME","AMOUNT","","ORDERED","UNIVERSE","VARIANCE","","%",
@@ -57,8 +57,8 @@ class DashTradeDspChannelAdapter internal constructor()
             )
 
             table2(binding.table2,current.listSovChannelCategory)
-
-
+            if (current.listSovChannelCategory.size>1)
+                table1SubTotal(binding.table2,current.listSovChannel)
 
             binding.table1.setOnClickListener {
                 onItemClick?.invoke(current)
@@ -69,85 +69,8 @@ class DashTradeDspChannelAdapter internal constructor()
 
     }
 
-    private fun table1(table: TableLayout, list: List<Data.SovDspChannel>){
-        val context=table.context
-        list.sortedByDescending { it.volume }.forEach {item ->
-
-            val orderedPercent: Double = (item.ordered.toDouble()/item.universe)*100
-            val par= Utils.par()
-
-            var textColor = context.resolveColorAttr(android.R.attr.textColorSecondary)
-
-            if ((par<80 && orderedPercent<par) || (par>=80 && orderedPercent<80.0))
-                textColor=ContextCompat.getColor(context, R.color.textWarning)
-
-            val row = TableRow(context)
-            table.addView(row)
-            row.addView(Table.cell(context,item.channel, Gravity.START,textColor,true))
-            row.addView(Table.cell(context,
-                Utils.formatDoubleToString(item.volume,0),
-                Gravity.END,textColor))
-            row.addView(Table.cell(context,
-                Utils.formatDoubleToString(item.totalNet,0),
-                Gravity.END,textColor))
-
-            val imgVolume=Table.icon(context, R.drawable.ic_open)
-            row.addView(imgVolume)
-
-            if (item.volume>0) {
-                imgVolume.setOnClickListener {
-                    val map = mutableMapOf<String, String>()
-                    map["channel"] = item.channel
-                    onCellClick?.invoke("volume",map)
-                }
-            }
 
 
-            row.addView(Table.cell(context, Utils.formatIntToString(item.ordered),
-                Gravity.END,textColor))
-
-            row.addView(Table.cell(context, Utils.formatIntToString(item.universe),
-                Gravity.END,textColor))
-
-
-            val variance=item.ordered-item.universe
-            row.addView(Table.cell(context, Utils.formatIntToString(variance),
-                Gravity.END,textColor))
-
-            val imgUba=Table.icon(context, R.drawable.ic_open)
-            row.addView(imgUba)
-
-            if (variance<0) {
-                imgUba.setOnClickListener {
-                    val map = mutableMapOf<String, String>()
-                    map["channel"] = item.channel
-                    onCellClick?.invoke("uba",map)
-                }
-            }
-            var strOrderPercent="-"
-            if (orderedPercent>0)  strOrderPercent=Utils.formatDoubleToString(orderedPercent) + " %"
-            row.addView(Table.cell(context, strOrderPercent, Gravity.END,textColor))
-
-            row.addView(Table.cell(context,
-                Utils.formatDoubleToString(item.lastYearVolume,0),
-                Gravity.END,textColor))
-
-
-            row.addView(Table.cell(context,
-                Utils.formatDoubleToString(item.volume-item.lastYearVolume,0),
-                Gravity.END,textColor))
-
-            row.addView(Table.cell(context,
-                Utils.formatDoubleToString(item.lastMonthVolume,0),
-                Gravity.END,textColor))
-
-            row.addView(Table.cell(context,
-                Utils.formatDoubleToString(item.volume-item.lastMonthVolume,0),
-                Gravity.END,textColor))
-
-
-        }
-    }
     private fun table2(table: TableLayout, list: List<Data.SovCategoryChannel>){
         val context=table.context
         list.sortedByDescending { it.volume }.forEach {item ->
@@ -170,7 +93,7 @@ class DashTradeDspChannelAdapter internal constructor()
                 Utils.formatDoubleToString(item.totalNet,0),
                 Gravity.END,textColor))
 
-            val imgVolume=Table.icon(context, R.drawable.ic_open)
+            val imgVolume=Table.icon(context)
             row.addView(imgVolume)
 
             if (item.volume>0) {
@@ -195,7 +118,7 @@ class DashTradeDspChannelAdapter internal constructor()
             row.addView(Table.cell(context, Utils.formatIntToString(variance),
                 Gravity.END,textColor))
 
-            val imgUba=Table.icon(context, R.drawable.ic_open)
+            val imgUba=Table.icon(context)
             row.addView(imgUba)
 
             if (variance<0) {
@@ -232,7 +155,83 @@ class DashTradeDspChannelAdapter internal constructor()
         }
     }
 
+    private fun table1SubTotal(table: TableLayout, list: List<Data.SovDspChannel>){
+        val context=table.context
+        val item=list[0]
 
+        val orderedPercent: Double = (item.ordered.toDouble()/item.universe)*100
+        val par= Utils.par()
+
+        var textColor = context.resolveColorAttr(android.R.attr.textColorSecondary)
+
+        if ((par<80 && orderedPercent<par) || (par>=80 && orderedPercent<80.0))
+            textColor=ContextCompat.getColor(context, R.color.textWarning)
+
+        val row = TableRow(context)
+        table.addView(row)
+        row.addView(Table.subCell(context,item.channel, Gravity.START,textColor,true))
+        row.addView(Table.subCell(context,
+            Utils.formatDoubleToString(item.volume,0),
+            Gravity.END,textColor))
+        row.addView(Table.subCell(context,
+            Utils.formatDoubleToString(item.totalNet,0),
+            Gravity.END,textColor))
+
+        val imgVolume=Table.icon(context)
+        row.addView(imgVolume)
+
+        if (item.volume>0) {
+            imgVolume.setOnClickListener {
+                val map = mutableMapOf<String, String>()
+                map["channel"] = item.channel
+                onCellClick?.invoke("volume",map)
+            }
+        }
+
+
+        row.addView(Table.subCell(context, Utils.formatIntToString(item.ordered),
+            Gravity.END,textColor))
+
+        row.addView(Table.subCell(context, Utils.formatIntToString(item.universe),
+            Gravity.END,textColor))
+
+
+        val variance=item.ordered-item.universe
+        row.addView(Table.subCell(context, Utils.formatIntToString(variance),
+            Gravity.END,textColor))
+
+        val imgUba=Table.icon(context)
+        row.addView(imgUba)
+
+        if (variance<0) {
+            imgUba.setOnClickListener {
+                val map = mutableMapOf<String, String>()
+                map["channel"] = item.channel
+                onCellClick?.invoke("uba",map)
+            }
+        }
+        var strOrderPercent="-"
+        if (orderedPercent>0)  strOrderPercent=Utils.formatDoubleToString(orderedPercent) + " %"
+        row.addView(Table.subCell(context, strOrderPercent, Gravity.END,textColor))
+
+        row.addView(Table.subCell(context,
+            Utils.formatDoubleToString(item.lastYearVolume,0),
+            Gravity.END,textColor))
+
+
+        row.addView(Table.subCell(context,
+            Utils.formatDoubleToString(item.volume-item.lastYearVolume,0),
+            Gravity.END,textColor))
+
+        row.addView(Table.subCell(context,
+            Utils.formatDoubleToString(item.lastMonthVolume,0),
+            Gravity.END,textColor))
+
+        row.addView(Table.subCell(context,
+            Utils.formatDoubleToString(item.volume-item.lastMonthVolume,0),
+            Gravity.END,textColor))
+
+    }
 
     internal fun setData(data: List<Data.SovDashTradeDspChannel>) {
         this.data = data

@@ -35,13 +35,19 @@ class SivViewModel(application: Application) : AndroidViewModel(application) {
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
-    fun sivSovCluster(cid:String,sno: String,dateFrom:String,dateTo:String):List<Data.SivSovCluster>{
-        return repository.sivSovCluster(cid,sno,dateFrom,dateTo)
+    fun sivSovCluster(cid:String,dateFrom:String,dateTo:String):List<Data.SivSovCluster>{
+        return repository.sivSovCluster(cid,dateFrom,dateTo)
     }
 
-    fun volumeClusterTradeType(cid:String,sno: String,dateFrom:String,dateTo:String):List<Data.SivSovClusterTradeType>{
-        return repository.volumeClusterTradeType(cid,sno,dateFrom,dateTo)
+    fun volumeClusterTradeType(cid:String,dateFrom:String,dateTo:String):List<Data.SivSovClusterTradeType>{
+        return repository.volumeClusterTradeType(cid,dateFrom,dateTo)
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
+
+    fun sivSovClusterCategory(cid:String,dateFrom:String,dateTo:String,
+                              clusterId:Int):List<Data.SivSovClusterCategory>{
+        return repository.sivSovClusterCategory(cid,dateFrom,dateTo,clusterId)
+    }
+
 }

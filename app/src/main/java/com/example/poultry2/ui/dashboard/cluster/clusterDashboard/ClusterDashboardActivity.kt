@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -18,7 +19,8 @@ import com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterTrade.D
 import com.example.poultry2.ui.dashboard.global.acct.DashAcctFragment
 import com.example.poultry2.ui.dashboard.global.customer.DashCustomerFragment
 import com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterDsp.DashClusterDspFragment
-import com.example.poultry2.ui.dashboard.cluster.tradeDashboard.tradeChannel.DashTradeChannelFragment
+import com.example.poultry2.ui.dashboard.cluster.clusterDashboard.clusterSivSovCategory.DashClusterSivSovCategoryFragment
+import com.example.poultry2.ui.dashboard.global.product.DashProductFragment
 import com.example.poultry2.ui.function.Theme
 import com.example.poultry2.ui.function.Theme.resolveColorAttr
 import com.example.poultry2.ui.function.Utils
@@ -111,7 +113,7 @@ class ClusterDashboardActivity : AppCompatActivity()  {
     }
 
     private fun setTabs(){
-        val tabHeader= arrayOf("trade","dsp","category","customer","account","ar")
+        val tabHeader= arrayOf("siv vs sov","trade","dsp","category","product","customer","account","ar")
         tabHeader.forEach {
             val tab: TabLayout.Tab = binding.tabs.newTab()
             tab.text = it
@@ -142,9 +144,11 @@ class ClusterDashboardActivity : AppCompatActivity()  {
         args.putString("cluster",cluster)
         if (fragment==null) {
             when (name) {
+                "siv vs sov" -> fragment = DashClusterSivSovCategoryFragment()
                 "trade" -> fragment = DashClusterTradeFragment()
                 "dsp" -> fragment = DashClusterDspFragment()
                 "category" -> fragment = DashClusterCategoryFragment()
+                "product" -> fragment = DashProductFragment()
                 "customer" -> fragment = DashCustomerFragment()
                 "account" -> fragment = DashAcctFragment()
                 "ar" -> fragment = DashArFragment()
